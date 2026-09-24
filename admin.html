@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAD & Manufacturing | Lead Dashboard</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><div class="nav"><a class="brand" href="index.html">CAD <span>&</span> Manufacturing</a><a href="index.html">← Website</a></div></header>
+<main class="section">
+<div class="sectionhead"><p class="eyebrow">PRIVATE DASHBOARD</p><h1>Lead Dashboard</h1><p>This demo stores leads in this browser only. Connect a real database before using it commercially.</p></div>
+<div class="adminbar"><button class="btn secondary" id="export">Export CSV</button><button class="btn danger" id="clear">Clear Demo Leads</button></div>
+<div id="stats" class="stats"></div>
+<div id="leads" class="leadlist"></div>
+</main>
+<script>
+const key='cadManufacturingLeads';
+function get(){return JSON.parse(localStorage.getItem(key)||'[]')}
+function render(){
+ const data=get();
+ document.getElementById('stats').innerHTML=`<div><b>${data.length}</b><span>Total Leads</span></div><div><b>${data.filter(x=>x.service==='3D CAD Design').length}</b><span>CAD Leads</span></div><div><b>${data.filter(x=>x.service==='Mould Design').length}</b><span>Mould Leads</span></div>`;
+ const box=document.getElementById('leads');
+ if(!data.length){box.innerHTML='<div class="empty">No leads yet. Submit the website form to test it.</div>';return}
+ box.innerHTML=data.slice().reverse().map((x,i)=>`<article class="leadcard"><div><h3>${esc(x.name)} ${x.company?`<small>• ${esc(x.company)}</small>`:''}</h3><p><b>${esc(x.service)}</b></p><p>${esc(x.message)}</p><small>${esc(x.email)} · ${esc(x.phone)} · ${new Date(x.createdAt).toLocaleString()}</small>${x.fileName?`<p>📎 ${esc(x.fileName)} (demo: file metadata only)</p>`:''}</div><a class="btn primary" href="https://wa.me/${digits(x.phone)}" target="_blank">WhatsApp</a></article>`).join('');
+}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function digits(s){let d=String(s||'').replace(/\D/g,''); if(d.length===10)d='91'+d; return d}
+document.getElementById('clear').onclick=()=>{if(confirm('Delete all demo leads?')){localStorage.removeItem(key);render()}}
+document.getElementById('export').onclick=()=>{
+ const d=get(); if(!d.length)return alert('No leads to export.');
+ const head=['Date','Name','Company','Email','Phone','Service','Message','File'];
+ const rows=[head,...d.map(x=>[x.createdAt,x.name,x.company,x.email,x.phone,x.service,x.message,x.fileName||''])];
+ const csv=rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='cad-manufacturing-leads.csv';a.click();
+};
+render();
+</script>
+</body>
+</html>
