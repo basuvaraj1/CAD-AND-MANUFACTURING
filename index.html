@@ -265,11 +265,15 @@ function addNote() {
 }
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-</body>// Register Service Worker for Android Installation
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js").then(() => {
-    console.log("Service Worker Active - App Ready to Install");
-  });
-}
-
-</html>
+</body>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./service-worker.js")
+        .catch((error) => {
+          console.error("Service worker registration failed:", error);
+        });
+    });
+  }
+</script>
