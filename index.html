@@ -1,92 +1,266 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="logo.jpg" />
+<meta name="theme-color" content="#0b1329" />
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CAD & Manufacturing | Engineering Services</title>
-<meta name="description" content="CAD, 3D modelling, 2D drawings, mould design, jig and fixture design and manufacturing support.">
-<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1329">
+<title>CAD & Manufacturing | Engineering Hub</title>
+<style>
+:root {
+  --bg:#081120; --panel:#111e33;
+  --cyan:#38bdf8; --orange:#fb923c;
+  --text:#f8fafc; --muted:#a5b4c8;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; padding:16px; color:var(--text);
+  background:var(--bg);
+  font-family:Arial, sans-serif; line-height:1.5;
+}
+main { max-width:760px; margin:auto; }
+header, section {
+  background:var(--panel); padding:16px;
+  margin-bottom:14px; border-radius:14px;
+  border:1px solid #263954;
+}
+h1 { font-size:23px; margin:0; }
+h2 { font-size:19px; color:var(--cyan); }
+h3 { margin-bottom:6px; }
+.brand { color:var(--orange); font-weight:bold; }
+p, small { color:var(--muted); }
+label { display:block; margin-top:10px; font-size:14px; }
+input, select, textarea {
+  width:100%; padding:11px; margin-top:5px;
+  color:white; background:#071222;
+  border:1px solid #30425e; border-radius:8px;
+}
+button {
+  border:0; border-radius:8px; padding:11px 14px;
+  background:var(--orange); color:#111827;
+  font-weight:bold; margin-top:12px; cursor:pointer;
+}
+.result {
+  margin-top:12px; padding:12px;
+  background:#071222; border-radius:8px;
+  overflow-wrap:anywhere;
+}
+a { color:var(--cyan); }
+.card {
+  border:1px solid #30425e; border-radius:9px;
+  padding:12px; margin-top:9px;
+}
+</style>
 </head>
 <body>
-<header class="topbar">
-  <div class="nav">
-    <a class="brand" href="#">CAD <span>&</span> Manufacturing</a>
-    <div class="navlinks">
-      <a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#process">Process</a><a href="#contact">Get Quote</a>
-    </div>
-  </div>
+<main>
+<header>
+  <h1>⚙️ CAD & MANUFACTURING</h1>
+  <p class="brand">@cad_with_manufacturing</p>
+  <p>CAD • 3D Design • CNC • GD&T • Manufacturing</p>
+  <a href="https://www.instagram.com/cad_with_manufacturing/"
+     target="_blank" rel="noopener">Visit Instagram ↗</a>
 </header>
 
-<main>
-<section class="hero">
-  <div class="hero-banner-wrap"><img class="hero-banner" src="hero-banner.jpg" alt="CAD & Manufacturing engineering design and manufacturing banner"></div>
-  <div>
-    <p class="eyebrow">CAD • 3D DESIGN • MANUFACTURING</p>
-    <h1>Turn your engineering idea into a <span>manufacturable design.</span></h1>
-    <p class="lead">Practical CAD modelling, 2D manufacturing drawings, mould design, jig & fixture design and engineering support.</p>
-    <div class="actions">
-      <a class="btn primary" href="#contact">Request a Quote</a>
-      <a class="btn secondary" id="heroWhatsapp" href="#">WhatsApp Us</a>
-    </div>
-    <div class="trust">
-      <span>✓ 3D CAD</span><span>✓ 2D Drawings</span><span>✓ DFM Support</span><span>✓ Fast Response</span>
-    </div>
-  </div>
+<section id="calculators">
+<h2>💨 Pneumatic Cylinder Calculator</h2>
+<label>Bore diameter (mm)</label>
+<input id="bore" type="number" value="63" min="1">
+<label>Rod diameter (mm)</label>
+<input id="rod" type="number" value="20" min="0">
+<label>Air pressure (bar)</label>
+<input id="pressure" type="number" value="6" min="0" step="0.1">
+<button onclick="pneumatic()">Calculate Force</button>
+<div class="result" id="pResult">Enter dimensions to calculate.</div>
+<small>Ideal force only. Actual force is lower due to friction and pressure losses.</small>
 </section>
 
-<section id="services" class="section">
-  <div class="sectionhead"><p class="eyebrow">WHAT WE DO</p><h2>Engineering Services</h2></div>
-  <div class="grid">
-    <article class="card"><div class="icon">⚙</div><h3>3D CAD Design</h3><p>Parts, assemblies and design modifications for practical manufacturing requirements.</p></article>
-    <article class="card"><div class="icon">📐</div><h3>2D Manufacturing Drawings</h3><p>Dimensions, tolerances, GD&T and drawing documentation for production.</p></article>
-    <article class="card"><div class="icon">🧩</div><h3>Mould Design</h3><p>Injection mould concepts, components, assemblies and design support.</p></article>
-    <article class="card"><div class="icon">🔧</div><h3>Jig & Fixture Design</h3><p>Production-oriented fixtures for locating, clamping and repeatable inspection.</p></article>
-    <article class="card"><div class="icon">🏭</div><h3>DFM & Manufacturing Support</h3><p>Design reviews focused on manufacturability, process and production practicality.</p></article>
-    <article class="card"><div class="icon">✏</div><h3>CAD Modification</h3><p>Update existing CAD models and drawings based on new dimensions or requirements.</p></article>
-  </div>
+<section>
+<h2>🛢️ Hydraulic Cylinder Calculator</h2>
+<label>Bore diameter (mm)</label>
+<input id="hBore" type="number" value="100" min="1">
+<label>Pressure (bar)</label>
+<input id="hPressure" type="number" value="160" min="0">
+<button onclick="hydraulic()">Calculate Force</button>
+<div class="result" id="hResult">Enter dimensions to calculate.</div>
 </section>
 
-<section id="portfolio" class="section dark">
-  <div class="sectionhead"><p class="eyebrow">PORTFOLIO</p><h2>Selected Work</h2><p>CAD design, mould design, fixture design and manufacturing-focused engineering work.</p></div>
-  <div class="portfolio">
-    <div class="project"><div class="projectvisual">3D CAD</div><h3>Mechanical Part Design</h3><p>Concept → 3D model → drawing.</p></div>
-    <div class="project"><div class="projectvisual">MOULD</div><h3>Injection Mould Design</h3><p>Practical mould components and assembly planning.</p></div>
-    <div class="project"><div class="projectvisual">FIXTURE</div><h3>Jig & Fixture</h3><p>Locating and clamping solutions for production.</p></div>
-  </div>
+<section>
+<h2>⚙️ Lathe RPM Calculator</h2>
+<label>Cutting speed (m/min)</label>
+<input id="speed" type="number" value="30" min="1">
+<label>Workpiece diameter (mm)</label>
+<input id="diameter" type="number" value="50" min="1">
+<label>Feed (mm/rev)</label>
+<input id="feed" type="number" value="0.2" min="0.01" step="0.01">
+<button onclick="lathe()">Calculate RPM</button>
+<div class="result" id="lResult">Enter cutting parameters.</div>
 </section>
 
-<section id="process" class="section">
-  <div class="sectionhead"><p class="eyebrow">HOW IT WORKS</p><h2>Simple 4-Step Process</h2></div>
-  <div class="steps">
-    <div><b>01</b><h3>Send Requirement</h3><p>Share your drawing, sketch, dimensions or idea.</p></div>
-    <div><b>02</b><h3>Review & Quote</h3><p>We review the requirement and discuss scope.</p></div>
-    <div><b>03</b><h3>Design</h3><p>CAD work starts after scope confirmation.</p></div>
-    <div><b>04</b><h3>Delivery</h3><p>Receive the agreed engineering files.</p></div>
-  </div>
+<section id="notes">
+<h2>📚 Engineering Notes</h2>
+<div class="card">
+<h3>SolidWorks</h3>
+<p>Learn sketching, constraints, part modelling, assemblies and engineering drawings.</p>
+</div>
+<div class="card">
+<h3>CNC & VMC</h3>
+<p>Study coordinate systems, work offsets, tool offsets and G/M code fundamentals.</p>
+</div>
+<div class="card">
+<h3>GD&T</h3>
+<p>Learn datums, feature control frames, geometric tolerances and drawing interpretation.</p>
+</div>
+<div class="card">
+<h3>Pneumatics</h3>
+<p>Study 3/2 and 5/2 valves, cylinder sizing and basic pneumatic circuits.</p>
+</div>
 </section>
 
-<section id="contact" class="section contact">
-  <div class="sectionhead"><p class="eyebrow">PROJECT ENQUIRY</p><h2>Request a Quote</h2><p>Tell us what you need. You can also attach a drawing or reference file.</p></div>
-  <form id="leadForm" class="form">
-    <div class="two"><input name="name" placeholder="Your name" required><input name="company" placeholder="Company name"></div>
-    <div class="two"><input name="email" type="email" placeholder="Email address" required><input name="phone" placeholder="WhatsApp / phone" required></div>
-    <select name="service" required>
-      <option value="">Select service</option><option>3D CAD Design</option><option>2D Manufacturing Drawing</option><option>Mould Design</option><option>Jig & Fixture Design</option><option>DFM / Manufacturing Support</option><option>CAD Modification</option>
-    </select>
-    <textarea name="message" placeholder="Describe your requirement, material, quantity, deadline, etc." required></textarea>
-    <label class="upload">Upload drawing / reference file (optional)<input name="file" id="file" type="file" accept=".pdf,.dwg,.dxf,.step,.stp,.iges,.igs,.sldprt,.sldasm,.jpg,.jpeg,.png" /></label>
-    <small id="fileNote">Maximum 10 MB in this demo.</small>
-    <button class="btn primary" type="submit">Submit Requirement</button>
-    <p id="formStatus" class="status"></p>
-  </form>
+<section id="courses">
+<h2>🎓 Courses</h2>
+<div class="card">
+<h3>SolidWorks: Beginner to Advanced</h3>
+<p>Sketching, 3D modelling, assemblies and drawings.</p>
+</div>
+<div class="card">
+<h3>CNC Programming Fundamentals</h3>
+<p>Learn CNC programming concepts, common G codes and M codes.</p>
+</div>
+<div class="card">
+<h3>Mechanical Design & GD&T</h3>
+<p>Engineering drawings, fits, tolerances and design fundamentals.</p>
+</div>
+<a href="https://wa.me/?text=Hello%2C%20I%20want%20to%20know%20about%20your%20CAD%20and%20Manufacturing%20courses."
+   target="_blank" rel="noopener">Enquire about courses on WhatsApp</a>
 </section>
+
+<section id="quiz">
+<h2>🧠 Engineering Quiz</h2>
+<p>Which formula calculates lathe RPM?</p>
+<label><input type="radio" name="quiz" value="0" style="width:auto"> RPM = π × D × V</label>
+<label><input type="radio" name="quiz" value="1" style="width:auto"> RPM = 1000 × V / (π × D)</label>
+<label><input type="radio" name="quiz" value="0" style="width:auto"> RPM = D / V</label>
+<button onclick="checkQuiz()">Check Answer</button>
+<div class="result" id="quizResult"></div>
+</section>
+
+<section id="certificate">
+<h2>🏅 Certificate Preview</h2>
+<label>Student name</label>
+<input id="student" placeholder="Enter student name">
+<label>Course name</label>
+<input id="course" value="CAD & Manufacturing Fundamentals">
+<button onclick="makeCertificate()">Generate Certificate</button>
+<div class="card" id="certificatePreview" style="display:none;background:white;color:#172033;text-align:center">
+  <h2 style="color:#a87910">CERTIFICATE</h2>
+  <h3>CAD & MANUFACTURING</h3>
+  <p style="color:#172033">This practice certificate is presented to</p>
+  <h2 id="certName" style="color:#172033"></h2>
+  <p style="color:#172033">For the learning activity:</p>
+  <strong id="certCourse"></strong>
+  <p style="color:#172033">Practice preview — not an accredited qualification.</p>
+</div>
+<button onclick="window.print()">Print / Save as PDF</button>
+</section>
+
+<section id="admin">
+<h2>🛠️ Admin Demo</h2>
+<p>This basic demo adds notes on the current page. It is not a secure online admin panel.</p>
+<label>Note title</label>
+<input id="noteTitle" placeholder="Enter note title">
+<label>Note content</label>
+<textarea id="noteContent" rows="3" placeholder="Enter study note"></textarea>
+<button onclick="addNote()">Add Note</button>
+<div id="adminNotes"></div>
+</section>
+
+<footer style="text-align:center;padding:10px">
+  <p>© <span id="year"></span> @cad_with_manufacturing</p>
+  <small>Verify all engineering calculations against manufacturer data and applicable safety standards.</small>
+</footer>
 </main>
 
-<footer>
-  <div><strong>CAD & Manufacturing</strong><p>CAD • 3D Design • Manufacturing</p></div>
-  <div class="footerlinks"><a href="https://www.instagram.com/cad_with_manufacturing" target="_blank">Instagram</a><a id="footerWhatsapp" href="#">WhatsApp</a><a href="admin.html">Admin</a></div>
-  <p class="copy">© 2026 CAD & Manufacturing</p>
-</footer>
-<script src="app.js"></script>
+<script>
+function val(id) {
+  return Number(document.getElementById(id).value);
+}
+function pneumatic() {
+  const D=val('bore'), d=val('rod'), P=val('pressure');
+  if(D<=0 || d<0 || d>=D || P<0) {
+    document.getElementById('pResult').textContent='Check your input values.';
+    return;
+  }
+  const area=Math.PI*D*D/4;
+  const annulus=Math.PI*(D*D-d*d)/4;
+  const push=P*0.1*area;
+  const pull=P*0.1*annulus;
+  document.getElementById('pResult').innerHTML=
+    'Ideal push force: <b>'+push.toFixed(1)+' N</b><br>'+
+    'Ideal pull force: <b>'+pull.toFixed(1)+' N</b><br>'+
+    'Approx. 70% push force: <b>'+(push*0.7/9.80665).toFixed(1)+' kgf</b>';
+}
+function hydraulic() {
+  const D=val('hBore'), P=val('hPressure');
+  if(D<=0 || P<0) {
+    document.getElementById('hResult').textContent='Check your input values.';
+    return;
+  }
+  const force=P*0.1*Math.PI*D*D/4;
+  document.getElementById('hResult').innerHTML=
+    'Ideal extension force: <b>'+force.toFixed(0)+' N</b><br>'+
+    'Approx. force: <b>'+(force/9806.65).toFixed(2)+' tonne-force</b>';
+}
+function lathe() {
+  const V=val('speed'), D=val('diameter'), f=val('feed');
+  if(V<=0 || D<=0 || f<=0) {
+    document.getElementById('lResult').textContent='Check your input values.';
+    return;
+  }
+  const rpm=1000*V/(Math.PI*D);
+  document.getElementById('lResult').innerHTML=
+    'Calculated spindle speed: <b>'+rpm.toFixed(0)+' RPM</b><br>'+
+    'Feed rate: <b>'+(rpm*f).toFixed(1)+' mm/min</b>';
+}
+function checkQuiz() {
+  const answer=document.querySelector('input[name="quiz"]:checked');
+  document.getElementById('quizResult').textContent=
+    !answer ? 'Please select an answer.' :
+    answer.value==='1' ? 'Correct! Well done.' : 'Not quite. Review the lathe RPM formula and try again.';
+}
+function makeCertificate() {
+  const name=document.getElementById('student').value.trim();
+  const course=document.getElementById('course').value.trim();
+  if(!name || !course) {
+    alert('Enter a student name and course name.');
+    return;
+  }
+  document.getElementById('certName').textContent=name;
+  document.getElementById('certCourse').textContent=course;
+  document.getElementById('certificatePreview').style.display='block';
+}
+function addNote() {
+  const title=document.getElementById('noteTitle').value.trim();
+  const content=document.getElementById('noteContent').value.trim();
+  if(!title || !content) {
+    alert('Enter both a title and note content.');
+    return;
+  }
+  const card=document.createElement('div');
+  card.className='card';
+  const heading=document.createElement('h3');
+  heading.textContent=title;
+  const paragraph=document.createElement('p');
+  paragraph.textContent=content;
+  card.append(heading,paragraph);
+  document.getElementById('adminNotes').appendChild(card);
+  document.getElementById('noteTitle').value='';
+  document.getElementById('noteContent').value='';
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
