@@ -262,5 +262,11 @@ function addNote() {
 }
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-</body>
+</body>// Register Service Worker for Android Installation
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js").then(() => {
+    console.log("Service Worker Active - App Ready to Install");
+  });
+}
+
 </html>
