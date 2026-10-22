@@ -158,34 +158,6 @@ hr{border:0;border-top:1px solid var(--line);margin:12px 0}
 <a href="https://wa.me/?text=Hello%2C%20I%20want%20to%20know%20about%20your%20CAD%20and%20Manufacturing%20courses." target="_blank" rel="noopener">Enquire about courses on WhatsApp</a>
 </section>
 
-<section id="quiz">
-<h2>🧠 Engineering Quiz</h2><p>Which formula calculates lathe RPM?</p>
-<label class="quiz-option"><input type="radio" name="quiz" value="0"> RPM = π × D × V</label>
-<label class="quiz-option"><input type="radio" name="quiz" value="1"> RPM = 1000 × V / (π × D)</label>
-<label class="quiz-option"><input type="radio" name="quiz" value="0"> RPM = D / V</label>
-<button type="button" onclick="checkQuiz()">Check Answer</button><div class="result" id="quizResult" aria-live="polite"></div>
-</section>
-
-<section id="certificate">
-<h2>🏅 Certificate Preview</h2>
-<label for="student">Student name</label><input id="student" placeholder="Enter student name">
-<label for="course">Course name</label><input id="course" value="CAD & Manufacturing Fundamentals">
-<button type="button" onclick="makeCertificate()">Generate Certificate</button>
-<div class="card hidden" id="certificatePreview" style="background:white;color:#172033;text-align:center">
-<h2 style="color:#a87910">CERTIFICATE</h2><h3>CAD &amp; MANUFACTURING</h3>
-<p style="color:#172033">This practice certificate is presented to</p><h2 id="certName" style="color:#172033"></h2>
-<p style="color:#172033">For the learning activity:</p><strong id="certCourse"></strong>
-<p style="color:#172033">Practice preview — not an accredited qualification.</p>
-</div>
-<button type="button" onclick="window.print()">Print / Save as PDF</button>
-</section>
-
-<section id="admin">
-<h2>🛠️ Admin Demo</h2><p>This demo stores notes locally in this browser on this device. It is not a secure online admin panel.</p>
-<label for="noteTitle">Note title</label><input id="noteTitle" placeholder="Enter note title">
-<label for="noteContent">Note content</label><textarea id="noteContent" rows="3" placeholder="Enter study note"></textarea>
-<button type="button" onclick="addNote()">Add Note</button><div id="adminNotes"></div>
-</section>
 
 <footer><p>© <span id="year"></span> @cad_with_manufacturing</p><small>Verify engineering calculations against manufacturer data and applicable safety standards.</small></footer>
 </main>
