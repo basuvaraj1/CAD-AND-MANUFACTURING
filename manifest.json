@@ -1,28 +1,30 @@
 
 {
-  "id": "./",
+  "id": "/CAD-AND-MANUFACTURING/",
   "name": "CAD & Manufacturing Hub",
   "short_name": "CAD Hub",
-  "description": "Learn mechanical engineering, CAD design, injection moulding, CNC machining, GD&T, manufacturing processes, engineering calculations and technical concepts.",
-  "start_url": "./",
-  "scope": "./",
+  "description": "CAD and Manufacturing Engineering Hub — mechanical engineering notes, injection mould design, CAD, CNC, GD&T, measurement tools, engineering calculators and technical learning resources.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/CAD-AND-MANUFACTURING/",
+  "scope": "/CAD-AND-MANUFACTURING/",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#080d18",
-  "theme_color": "#080d18",
+  "theme_color": "#081120",
   "categories": [
     "education",
     "productivity"
   ],
   "icons": [
     {
-      "src": "./icons/icon-192.png",
+      "src": "/CAD-AND-MANUFACTURING/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./icons/icon-512.png",
+      "src": "/CAD-AND-MANUFACTURING/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
