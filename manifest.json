@@ -1,17 +1,19 @@
 
 {
   "id": "./",
-  "name": "CAD & Manufacturing",
-  "short_name": "CAD & MFG",
-  "description": "Learn CAD, 3D design, CNC, GD&T and manufacturing.",
+  "name": "CAD & Manufacturing Hub",
+  "short_name": "CAD Hub",
+  "description": "Learn mechanical engineering, CAD design, injection moulding, CNC machining, GD&T, manufacturing processes, engineering calculations and technical concepts.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#080d18",
   "theme_color": "#080d18",
-  "prefer_related_applications": false,
-  "categories": ["education", "productivity"],
+  "categories": [
+    "education",
+    "productivity"
+  ],
   "icons": [
     {
       "src": "./icons/icon-192.png",
