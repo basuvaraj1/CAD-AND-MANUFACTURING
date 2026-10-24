@@ -1,442 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080d18">
-<meta name="mobile-web-app-capable" content="yes">
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icons/icon-192.png" type="image/png">
-<title>CAD &amp; Manufacturing | Engineering Hub</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#081120">
+<meta name="description" content="CAD and Manufacturing Engineering Hub — mechanical engineering notes, mould design, CAD, CNC, GD&T, measurement tools and calculators.">
+<title>CAD & Manufacturing | Mechanical Engineering Notes Hub</title>
 <style>
-:root{--bg:#081120;--panel:#111e33;--panel2:#071222;--cyan:#38bdf8;--orange:#fb923c;--text:#f8fafc;--muted:#a5b4c8;--line:#30425e}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;padding:16px;color:var(--text);background:var(--bg);font-family:Arial,sans-serif;line-height:1.6}
-main{max-width:900px;margin:auto}
-header,section{background:var(--panel);padding:18px;margin-bottom:14px;border-radius:14px;border:1px solid #263954}
-h1{font-size:clamp(21px,4vw,28px);margin:0}
-h2{font-size:20px;color:var(--cyan);margin:0 0 12px}
-h3{margin:0 0 7px}
-p,small,.muted{color:var(--muted)}
-.brand{color:var(--orange);font-weight:bold}
-.brand-row{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-.channel-logo{width:68px;height:68px;flex:0 0 68px;border-radius:14px;border:1px solid #36516f;background:#071222;padding:5px;object-fit:contain}
-.brand-row h1{line-height:1.2}
-a{color:var(--cyan)}
-label{display:block;margin-top:10px;font-size:14px}
-input,select,textarea{width:100%;padding:11px;margin-top:5px;color:white;background:var(--panel2);border:1px solid var(--line);border-radius:8px;font:inherit}
-button,.button{border:0;border-radius:8px;padding:11px 14px;background:var(--orange);color:#111827;font-weight:bold;margin-top:12px;cursor:pointer;text-decoration:none;display:inline-block}
-button:hover,.button:hover{filter:brightness(1.07)}
-button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
-.result{margin-top:12px;padding:12px;background:var(--panel2);border-radius:8px;overflow-wrap:anywhere}
-.card{border:1px solid var(--line);border-radius:11px;padding:15px;margin-top:10px;background:#0d192d}
-.notes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.note-card{display:block;width:100%;text-align:left;background:#0d192d;color:var(--text);border:1px solid var(--line);padding:16px;margin:0;border-radius:11px;min-height:150px}
-.note-card h3{color:var(--text);font-size:18px}
-.note-card p{font-weight:normal;margin-bottom:8px}
-.note-card .open-hint{color:var(--cyan);font-size:13px}
-.ppt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
-.ppt-card{display:block;padding:14px;border:1px solid var(--line);border-radius:10px;background:#0d192d;color:var(--text);text-decoration:none}
-.ppt-card strong{display:block;margin-bottom:5px}
-.ppt-card span{font-size:13px;color:var(--cyan)}
-.ppt-panel{margin-top:14px;padding:14px;border:1px solid #36516f;border-radius:12px;background:#0a1629}
-.note-detail{margin-top:16px;border:1px solid #36516f;border-radius:12px;padding:16px;background:#0a1629}
-.note-detail h3{color:var(--orange);margin-top:18px}
-.note-detail h3:first-child{margin-top:0}
-.note-detail ul,.note-detail ol{padding-left:22px}
-.note-detail li{margin:5px 0;color:#d4deeb}
-.formula{background:#071222;border-left:3px solid var(--cyan);padding:10px 12px;border-radius:5px;margin:9px 0;color:#e2e8f0;overflow-wrap:anywhere}
-.pill{display:inline-block;padding:3px 8px;border:1px solid #36516f;border-radius:20px;color:var(--cyan);font-size:12px;margin:3px 4px 3px 0}
-#noteSearch{margin:0 0 12px}
-.back-button{background:#243751;color:white;margin-top:0;margin-bottom:12px}
-.hidden{display:none!important}
-.quiz-option{display:flex;align-items:flex-start;gap:8px}
-.quiz-option input{width:auto;margin-top:5px}
-footer{text-align:center;padding:10px}
-hr{border:0;border-top:1px solid var(--line);margin:12px 0}
-@media(max-width:560px){body{padding:10px}header,section{padding:14px}.notes-grid,.ppt-grid{grid-template-columns:1fr}.note-card{min-height:unset}.note-detail{padding:12px}}
-@media print{body{background:white;color:#111;padding:0}header,section,.card,.note-detail{background:white;color:#111;border:1px solid #bbb}p,small,.muted,.note-detail li{color:#333}button,a{display:none!important}}
+:root{--bg:#07101e;--panel:#101d31;--panel2:#0a1628;--cyan:#46d7ff;--orange:#ffad5a;--text:#f4f8ff;--muted:#a9b8cc;--line:#2a405e;--green:#65e6b3}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at top right,#132949 0,#07101e 45%);color:var(--text);font:16px/1.6 Arial,Helvetica,sans-serif}a{color:var(--cyan)}button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:18px}.hero,.section{background:rgba(16,29,49,.96);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:18px;box-shadow:0 12px 35px #0002}.hero{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.logo{width:76px;height:76px;flex:none}.hero-copy{flex:1;min-width:240px}.eyebrow{color:var(--orange);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:12px}.hero h1{font-size:clamp(25px,4vw,39px);line-height:1.12;margin:5px 0}.hero p{margin:8px 0;color:var(--muted)}.hero-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:10px 15px;background:var(--orange);color:#172033;font-weight:800;text-decoration:none}.btn.secondary{background:#1b304b;color:var(--text);border:1px solid var(--line)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}.section h2{font-size:22px;margin:0;color:var(--cyan)}.muted,small{color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px}.stat b{display:block;color:var(--orange);font-size:22px}.stat span{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.topic{background:linear-gradient(145deg,#10223a,#0a1628);border:1px solid var(--line);border-radius:14px;padding:17px;display:flex;flex-direction:column;min-height:178px}.topic .emoji{font-size:27px}.topic h3{margin:6px 0;color:var(--text);font-size:18px}.topic p{margin:0 0 14px;color:var(--muted);font-size:14px;flex:1}.topic button{background:#17314e;color:var(--cyan);border:1px solid #2c4b6c;border-radius:9px;padding:9px;font-weight:700;text-align:left}.search-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 16px}.search-row input,.search-row select,.field input,.field select{background:#081426;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:11px;width:100%;min-width:0}.search-row input{flex:1;min-width:220px}.search-row select{width:auto;min-width:170px}.calculator-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.calc{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:16px}.calc h3{margin:0 0 10px}.field{margin:9px 0}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}.result{padding:12px;border-radius:9px;background:#132943;border-left:3px solid var(--green);margin-top:12px;overflow-wrap:anywhere}.note-panel{border:1px solid #355575;background:#091729;border-radius:14px;padding:20px;margin-top:16px}.note-panel h2{color:var(--orange)}.note-panel h3{margin:18px 0 5px;color:var(--cyan)}.note-panel li{margin:6px 0;color:#d8e4f4}.note-panel .ppt-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.pill{display:inline-block;border:1px solid #355575;border-radius:30px;padding:3px 9px;color:var(--cyan);font-size:12px;margin:3px}.hide{display:none!important}.formula{font-family:Consolas,monospace;background:#06101e;border:1px solid #263c58;border-radius:8px;padding:10px;overflow-wrap:anywhere}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}.resource{padding:13px;border:1px solid var(--line);background:var(--panel2);border-radius:10px;margin:8px 0}.resource b{display:block}.resource a{display:inline-block;margin-top:4px}.footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.wrap{padding:10px}.hero,.section{padding:15px}.grid,.calculator-grid,.two-col{grid-template-columns:1fr}.logo{width:60px;height:60px}.hero{align-items:flex-start}}
+@media print{body{background:white;color:#111}.hero,.section,.topic,.calc,.note-panel,.resource{background:white;color:#111;box-shadow:none;border:1px solid #bbb}button,.btn,.hero-actions{display:none!important}p,li,small,.muted{color:#333}}
 </style>
-</head>
-<body>
-<main>
-<header>
-  <div class="brand-row"><img class="channel-logo" src="./channel-logo.svg" alt="CAD with Manufacturing channel logo"><div><h1>CAD &amp; MANUFACTURING</h1><p class="brand">@cad_with_manufacturing</p></div></div>
-  <p>CAD • 3D Design • CNC • GD&amp;T • Manufacturing</p>
-  <a href="https://www.instagram.com/cad_with_manufacturing/" target="_blank" rel="noopener">Visit Instagram ↗</a>
+</head><body><main class="wrap">
+<header class="hero">
+<svg class="logo" viewBox="0 0 100 100" role="img" aria-label="CAD and Manufacturing logo"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#46d7ff"/><stop offset="1" stop-color="#ffad5a"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="22" fill="#0a1628" stroke="#2a405e" stroke-width="2"/><path d="M22 30h25l10 10-10 10H22zM53 58h25v12H53zM65 24v25" fill="none" stroke="url(#g)" stroke-width="5" stroke-linejoin="round"/><text x="50" y="86" font-size="12" font-weight="bold" fill="#f4f8ff" text-anchor="middle">CAD MFG</text></svg>
+<div class="hero-copy"><div class="eyebrow">Engineering learning platform</div><h1>CAD &amp; Manufacturing Hub</h1><p><strong style="color:var(--orange)">@cad_with_manufacturing</strong> · Mechanical notes, design calculators, CAD, CNC, GD&amp;T and mould technology.</p><div class="hero-actions"><a class="btn" href="https://www.instagram.com/cad_with_manufacturing/" target="_blank" rel="noopener">Visit Instagram ↗</a><a class="btn secondary" href="#engineering-notes">Explore Notes ↓</a></div></div>
 </header>
-
-<section id="plasticPunching">
-  <h2>🔧 Plastic Punching Force Calculator</h2>
-  <p>Select the plastic material and enter cutting dimensions. Results calculate automatically.</p>
-  <label for="plasticMaterial">Select plastic material</label>
-  <select id="plasticMaterial">
-    <option value="20">Polypropylene (PP) — estimate 20 MPa</option>
-    <option value="18">Polyethylene HDPE (PE) — estimate 18 MPa</option>
-    <option value="25" selected>ABS — estimate 25 MPa</option>
-    <option value="30">PVC — estimate 30 MPa</option>
-    <option value="40">Polycarbonate (PC) — estimate 40 MPa</option>
-    <option value="35">Nylon (PA) — estimate 35 MPa</option>
-    <option value="45">POM / Acetal — estimate 45 MPa</option>
-    <option value="35">Acrylic (PMMA) — estimate 35 MPa</option>
-    <option value="35">PET — estimate 35 MPa</option>
-    <option value="custom">Custom material strength</option>
-  </select>
-  <label for="plasticStrength">Shear strength (MPa = N/mm²)</label>
-  <input id="plasticStrength" type="number" min="0.1" step="0.1" value="25">
-  <label for="cutShape">Cutting shape</label>
-  <select id="cutShape">
-    <option value="circle">Circular hole</option>
-    <option value="rectangle">Rectangle</option>
-    <option value="perimeter">Enter cutting perimeter directly</option>
-  </select>
-  <div id="circleFields">
-    <label for="cutDiameter">Hole diameter (mm)</label>
-    <input id="cutDiameter" type="number" min="0.01" step="any" value="10">
-  </div>
-  <div id="rectangleFields" class="hidden">
-    <label for="cutLength">Rectangle length (mm)</label>
-    <input id="cutLength" type="number" min="0.01" step="any" value="20">
-    <label for="cutWidth">Rectangle width (mm)</label>
-    <input id="cutWidth" type="number" min="0.01" step="any" value="10">
-  </div>
-  <div id="perimeterFields" class="hidden">
-    <label for="cutPerimeter">Total cutting perimeter per part (mm)</label>
-    <input id="cutPerimeter" type="number" min="0.01" step="any" value="60">
-  </div>
-  <label for="plasticThickness">Material thickness (mm)</label>
-  <input id="plasticThickness" type="number" min="0.01" step="any" value="2">
-  <label for="plasticCount">Number of identical cuts / holes</label>
-  <input id="plasticCount" type="number" min="1" step="1" value="1">
-  <label for="plasticFactor">Force allowance (%)</label>
-  <input id="plasticFactor" type="number" min="0" step="1" value="20">
-  <small>Allowance is a calculation factor, not a verified press-sizing safety factor.</small>
-  <div class="result" id="plasticResult" aria-live="polite"></div>
-  <div class="formula">Ideal force (N) = Total cutting perimeter (mm) × Thickness (mm) × Shear strength (N/mm²)</div>
-  <small>Material strengths are illustrative estimates, not verified values for every grade. Confirm the actual material data and tooling conditions before production use.</small>
-</section>
-
-<section id="calculators">
-<h2>💨 Pneumatic Cylinder Calculator</h2>
-<label for="bore">Bore diameter (mm)</label><input id="bore" type="number" value="63" min="1">
-<label for="rod">Rod diameter (mm)</label><input id="rod" type="number" value="20" min="0">
-<label for="pressure">Air pressure (bar)</label><input id="pressure" type="number" value="6" min="0" step="0.1">
-<button type="button" onclick="pneumatic()">Calculate Force</button>
-<div class="result" id="pResult">Enter dimensions to calculate.</div>
-<small>Ideal force only. Actual force is lower due to friction and pressure losses.</small>
-<hr>
-<h3>🧩 Pneumatic Cylinder Auto-Configurator</h3>
-<p>Select a cylinder type to automatically show the typical accessories and connection layout.</p>
-<label for="cylinderType">Select cylinder type</label>
-<select id="cylinderType" onchange="updateCylinderKit()">
-  <option value="double" selected>Double-acting cylinder</option>
-  <option value="single">Single-acting cylinder (spring return)</option>
-</select>
-<label for="cylinderBoreKit">Cylinder bore (mm)</label>
-<select id="cylinderBoreKit" onchange="updateCylinderKit()">
-  <option>12</option><option>16</option><option>20</option><option>25</option><option>32</option><option selected>40</option><option>50</option><option>63</option><option>80</option><option>100</option>
-</select>
-<div class="result" id="cylinderKit" aria-live="polite"></div>
-<small>Auto-generated starting checklist only. Confirm port thread, tube outer diameter, valve flow/Cv, coil voltage, sensor groove and reed-switch compatibility against the exact cylinder and valve manufacturer catalogue before ordering.</small>
-</section>
-
-<section>
-<h2>🛢️ Hydraulic Cylinder Calculator</h2>
-<label for="hBore">Bore diameter (mm)</label><input id="hBore" type="number" value="100" min="1">
-<label for="hPressure">Pressure (bar)</label><input id="hPressure" type="number" value="160" min="0">
-<button type="button" onclick="hydraulic()">Calculate Force</button>
-<div class="result" id="hResult">Enter dimensions to calculate.</div>
-</section>
-
-<section>
-<h2>⚙️ Lathe RPM Calculator</h2>
-<label for="speed">Cutting speed (m/min)</label><input id="speed" type="number" value="30" min="1">
-<label for="diameter">Workpiece diameter (mm)</label><input id="diameter" type="number" value="50" min="1">
-<label for="feed">Feed (mm/rev)</label><input id="feed" type="number" value="0.2" min="0.01" step="0.01">
-<button type="button" onclick="lathe()">Calculate RPM</button>
-<div class="result" id="lResult">Enter cutting parameters.</div>
-</section>
-
-
-<section id="courses">
-<h2>🎓 Courses</h2>
-<div class="card"><h3>SolidWorks: Beginner to Advanced</h3><p>Sketching, 3D modelling, assemblies and drawings.</p></div>
-<div class="card"><h3>CNC Programming Fundamentals</h3><p>Learn CNC programming concepts, common G codes and M codes.</p></div>
-<div class="card"><h3>Mechanical Design &amp; GD&amp;T</h3><p>Engineering drawings, fits, tolerances and design fundamentals.</p></div>
-<a href="https://wa.me/?text=Hello%2C%20I%20want%20to%20know%20about%20your%20CAD%20and%20Manufacturing%20courses." target="_blank" rel="noopener">Enquire about courses on WhatsApp</a>
-</section>
-
-<section id="quiz">
-<h2>🧠 Engineering Quiz</h2><p>Which formula calculates lathe RPM?</p>
-<label class="quiz-option"><input type="radio" name="quiz" value="0"> RPM = π × D × V</label>
-<label class="quiz-option"><input type="radio" name="quiz" value="1"> RPM = 1000 × V / (π × D)</label>
-<label class="quiz-option"><input type="radio" name="quiz" value="0"> RPM = D / V</label>
-<button type="button" onclick="checkQuiz()">Check Answer</button><div class="result" id="quizResult" aria-live="polite"></div>
-</section>
-
-<section id="notes">
-<h2>📚 Engineering Notes &amp; PPT Library</h2>
-<p>Choose a topic to read notes, or open the presentation list to access your engineering PPT files.</p>
-<button type="button" onclick="togglePptList()" aria-expanded="false" id="pptToggle">📚 Notes</button>
-<div id="pptPanel" class="ppt-panel hidden">
-  <h3>📑 Manufacturing &amp; Mechanical PPTs</h3>
-  <p>Tap a presentation to open or download it. Upload your .pptx files into a folder named <code>presentations</code> in your GitHub repository, using these exact filenames.</p>
-  <div class="ppt-grid">
-    <a class="ppt-card" href="./presentations/solidworks-basics.pptx" target="_blank" rel="noopener"><strong>1. SolidWorks Basics</strong><span>Open / Download PPT ↗</span></a>
-    <a class="ppt-card" href="./presentations/cnc-vmc-basics.pptx" target="_blank" rel="noopener"><strong>2. CNC &amp; VMC Basics</strong><span>Open / Download PPT ↗</span></a>
-    <a class="ppt-card" href="./presentations/gdt-basics.pptx" target="_blank" rel="noopener"><strong>3. GD&amp;T Fundamentals</strong><span>Open / Download PPT ↗</span></a>
-    <a class="ppt-card" href="./presentations/injection-moulding.pptx" target="_blank" rel="noopener"><strong>4. Injection Moulding</strong><span>Open / Download PPT ↗</span></a>
-    <a class="ppt-card" href="./presentations/pneumatics-hydraulics.pptx" target="_blank" rel="noopener"><strong>5. Pneumatics &amp; Hydraulics</strong><span>Open / Download PPT ↗</span></a>
-    <a class="ppt-card" href="./presentations/quality-control-tools.pptx" target="_blank" rel="noopener"><strong>6. 7 QC Tools</strong><span>Open / Download PPT ↗</span></a>
-    <a class="ppt-card" href="./presentations/metrology-measurement.pptx" target="_blank" rel="noopener"><strong>7. Metrology &amp; Measurement</strong><span>Open / Download PPT ↗</span></a>
-    <a class="ppt-card" href="./presentations/engineering-materials.pptx" target="_blank" rel="noopener"><strong>8. Engineering Materials</strong><span>Open / Download PPT ↗</span></a>
-  </div>
-</div>
-<hr>
-<input id="noteSearch" type="search" placeholder="Search engineering topics..." aria-label="Search engineering notes" oninput="filterNotes()">
-<div class="notes-grid" id="notesGrid">
-<button type="button" class="note-card" data-topic="solidworks" onclick="openNote('solidworks')"><h3>SolidWorks</h3><p>Sketching, constraints, part modelling, assemblies and engineering drawings.</p><span class="open-hint">Open full notes →</span></button>
-<button type="button" class="note-card" data-topic="cnc" onclick="openNote('cnc')"><h3>CNC &amp; VMC</h3><p>Coordinate systems, work offsets, tool offsets and G/M code fundamentals.</p><span class="open-hint">Open full notes →</span></button>
-<button type="button" class="note-card" data-topic="gdt" onclick="openNote('gdt')"><h3>GD&amp;T</h3><p>Datums, feature control frames, geometric tolerances and drawing interpretation.</p><span class="open-hint">Open full notes →</span></button>
-<button type="button" class="note-card" data-topic="pneumatics" onclick="openNote('pneumatics')"><h3>Pneumatics</h3><p>3/2 and 5/2 valves, cylinder sizing and basic pneumatic circuits.</p><span class="open-hint">Open full notes →</span></button>
-<button type="button" class="note-card" data-topic="mould" onclick="openNote('mould')"><h3>Injection Mould Design</h3><p>Mould components, parting line, draft, shrinkage, runner, gate, cooling and design calculations.</p><span class="open-hint">Open mould notes + PPT →</span></button>
-</div>
-<div id="noteDetail" class="note-detail hidden" tabindex="-1" aria-live="polite"></div>
-</section>
-
-
-<footer><p>© <span id="year"></span> @cad_with_manufacturing</p><small>Verify engineering calculations against manufacturer data and applicable safety standards.</small></footer>
+<section class="section"><div class="section-head"><h2>📘 Your Engineering Desk</h2><span class="pill">Study · Revise · Calculate</span></div><p class="muted">Search topics, open concise study notes, review formulas and access available PowerPoint/PDF learning files.</p><div class="stats"><div class="stat"><b id="topicCount">12</b><span>Study topics</span></div><div class="stat"><b>4</b><span>Live calculators</span></div><div class="stat"><b>24/7</b><span>Self-learning</span></div><div class="stat"><b>100%</b><span>Responsive layout</span></div></div></section>
+<section class="section" id="engineering-notes"><div class="section-head"><h2>📚 Engineering Notes</h2><span class="muted">Tap any card to open full notes</span></div><div class="search-row"><input id="search" type="search" placeholder="Search mould, SolidWorks, CNC, GD&T..." aria-label="Search engineering notes"><select id="category"><option value="all">All categories</option><option value="design">CAD & Design</option><option value="manufacturing">Manufacturing</option><option value="quality">Quality & Measurement</option><option value="automation">Automation</option></select></div><div class="grid" id="topicGrid">
+<article class="topic" data-id="mould" data-category="manufacturing" data-search="injection mould mould design tool parts runner gate sprue cooling ejector draft shrinkage"><div class="emoji">🧩</div><h3>Injection Mould Design</h3><p>Mould components, parting line, gates, runners, cooling, draft angle, shrinkage and ejection.</p><button onclick="openNote('mould')">Open mould notes &amp; PPT →</button></article>
+<article class="topic" data-id="defects" data-category="manufacturing" data-search="injection moulding defects troubleshooting short shot flash sink mark warpage burn marks"><div class="emoji">🛠️</div><h3>Moulding Defects</h3><p>Common injection moulding defects, likely causes and troubleshooting checks.</p><button onclick="openNote('defects')">Open defect guide →</button></article>
+<article class="topic" data-id="solidworks" data-category="design" data-search="solidworks sketch feature part assembly drawing mate"><div class="emoji">🧊</div><h3>SolidWorks</h3><p>Sketch relations, features, assemblies, mates, drawings and modelling workflow.</p><button onclick="openNote('solidworks')">Open full notes →</button></article>
+<article class="topic" data-id="autocad" data-category="design" data-search="autocad drafting layers dimension commands 2d drawing"><div class="emoji">📐</div><h3>AutoCAD</h3><p>Drafting setup, layers, coordinate entry, editing and dimensioning commands.</p><button onclick="openNote('autocad')">Open full notes →</button></article>
+<article class="topic" data-id="cnc" data-category="manufacturing" data-search="cnc vmc g code m code work offset tool offset rpm feed"><div class="emoji">⚙️</div><h3>CNC &amp; VMC</h3><p>Coordinate systems, work offsets, tool offsets, G/M codes and setup safety.</p><button onclick="openNote('cnc')">Open full notes →</button></article>
+<article class="topic" data-id="gdt" data-category="quality" data-search="gdt geometric dimensioning tolerancing datum position flatness perpendicularity"><div class="emoji">🎯</div><h3>GD&amp;T</h3><p>Datums, feature control frames, form, orientation, location and runout controls.</p><button onclick="openNote('gdt')">Open full notes &amp; PPT →</button></article>
+<article class="topic" data-id="measurement" data-category="quality" data-search="measurement instruments vernier caliper micrometer dial gauge slip gauge"><div class="emoji">📏</div><h3>Measuring Instruments</h3><p>Vernier caliper, micrometer, dial indicator, slip gauges and measurement basics.</p><button onclick="openNote('measurement')">Open full notes →</button></article>
+<article class="topic" data-id="pneumatics" data-category="automation" data-search="pneumatic cylinder valve 3/2 5/2 reed switch pressure force"><div class="emoji">💨</div><h3>Pneumatics</h3><p>Air preparation, directional valves, cylinders, sensors and basic circuits.</p><button onclick="openNote('pneumatics')">Open full notes →</button></article>
+<article class="topic" data-id="hydraulics" data-category="automation" data-search="hydraulic pump valve cylinder pressure force oil"><div class="emoji">🛢️</div><h3>Hydraulics</h3><p>Hydraulic power packs, pumps, valves, cylinders, pressure and force.</p><button onclick="openNote('hydraulics')">Open full notes →</button></article>
+<article class="topic" data-id="lathe" data-category="manufacturing" data-search="lathe turning rpm cutting speed feed depth of cut"><div class="emoji">🔩</div><h3>Lathe &amp; Machining</h3><p>Turning operations, cutting speed, spindle speed, feed and machining terms.</p><button onclick="openNote('lathe')">Open full notes →</button></article>
+<article class="topic" data-id="materials" data-category="manufacturing" data-search="engineering materials steel aluminium plastic properties hardness heat treatment"><div class="emoji">🧱</div><h3>Materials &amp; Heat Treatment</h3><p>Material properties, steel and aluminium basics, hardness and heat treatment.</p><button onclick="openNote('materials')">Open full notes →</button></article>
+<article class="topic" data-id="interview" data-category="design" data-search="mechanical engineering diploma interview questions answers"><div class="emoji">🎓</div><h3>Mechanical Interview Prep</h3><p>Core concepts, practical workshop questions and revision topics for interviews.</p><button onclick="openNote('interview')">Open full notes &amp; PPT →</button></article>
+</div><div id="noteDetail" class="note-panel hide" tabindex="-1" aria-live="polite"></div></section>
+<section class="section" id="calculators"><div class="section-head"><h2>🧮 Engineering Calculators</h2><span class="muted">Enter values to calculate instantly</span></div><div class="calculator-grid">
+<div class="calc"><h3>Plastic Punching Force</h3><div class="field"><label for="plasticStrength">Shear strength (MPa or N/mm²)</label><input id="plasticStrength" type="number" min="0.1" value="25" step="0.1"></div><div class="field"><label for="shape">Cut shape</label><select id="shape"><option value="circle">Circular hole</option><option value="rectangle">Rectangle</option><option value="perimeter">Known perimeter</option></select></div><div class="field" id="diamField"><label for="diam">Hole diameter (mm)</label><input id="diam" type="number" min="0.01" value="10" step="any"></div><div class="field hide" id="lengthField"><label for="length">Length (mm)</label><input id="length" type="number" min="0.01" value="20" step="any"></div><div class="field hide" id="widthField"><label for="width">Width (mm)</label><input id="width" type="number" min="0.01" value="10" step="any"></div><div class="field hide" id="perimField"><label for="perim">Perimeter (mm)</label><input id="perim" type="number" min="0.01" value="60" step="any"></div><div class="field"><label for="thickness">Material thickness (mm)</label><input id="thickness" type="number" min="0.01" value="2" step="any"></div><div class="field"><label for="count">Number of cuts</label><input id="count" type="number" min="1" value="1" step="1"></div><div class="field"><label for="allowance">Allowance (%)</label><input id="allowance" type="number" min="0" value="20" step="1"></div><div class="result" id="plasticResult" aria-live="polite">Enter values to calculate.</div><small>Illustrative estimate only. Confirm actual grade data and tool conditions before production.</small></div>
+<div class="calc"><h3>Pneumatic Cylinder Force</h3><div class="field"><label for="bore">Bore diameter (mm)</label><input id="bore" type="number" min="1" value="63"></div><div class="field"><label for="rod">Rod diameter (mm)</label><input id="rod" type="number" min="0" value="20"></div><div class="field"><label for="pressure">Air pressure (bar)</label><input id="pressure" type="number" min="0" value="6" step="0.1"></div><div class="result" id="pneumaticResult" aria-live="polite"></div><small>Ideal theoretical force; real force is lower due to friction and pressure losses.</small></div>
+<div class="calc"><h3>Hydraulic Cylinder Force</h3><div class="field"><label for="hBore">Bore diameter (mm)</label><input id="hBore" type="number" min="1" value="100"></div><div class="field"><label for="hPressure">Pressure (bar)</label><input id="hPressure" type="number" min="0" value="160"></div><div class="result" id="hydraulicResult" aria-live="polite"></div></div>
+<div class="calc"><h3>Lathe RPM &amp; Feed Rate</h3><div class="field"><label for="speed">Cutting speed (m/min)</label><input id="speed" type="number" min="0.1" value="30" step="any"></div><div class="field"><label for="diameter">Workpiece diameter (mm)</label><input id="diameter" type="number" min="0.1" value="50" step="any"></div><div class="field"><label for="feed">Feed (mm/rev)</label><input id="feed" type="number" min="0.001" value="0.2" step="any"></div><div class="result" id="latheResult" aria-live="polite"></div><div class="formula">RPM = (1000 × cutting speed) ÷ (π × diameter)</div></div>
+</div></section>
+<section class="section" id="resources"><div class="section-head"><h2>📂 Study Files &amp; Presentations</h2><span class="muted">Keep these files in the presentations folder</span></div><div class="two-col">
+<div><div class="resource"><b>Injection Mould Design Calculations A to Z Toolkit</b><small>PowerPoint · mould calculations and design</small><br><a href="presentations/Injection_Mould_Design_Calculations_A_to_Z_Toolkit.pptx" target="_blank">Open / Download PPT ↗</a></div><div class="resource"><b>Injection Mould Parts — Illustrated Explanation</b><small>PowerPoint · mould components</small><br><a href="presentations/Injection_Mould_Parts_Illustrated_Explanation.pptx" target="_blank">Open / Download PPT ↗</a></div><div class="resource"><b>Complete Mould Manufacturing Process</b><small>PowerPoint · process overview</small><br><a href="presentations/Complete_Mould_Manufacturing_Process_Illustrated.pptx" target="_blank">Open / Download PPT ↗</a></div><div class="resource"><b>Injection Moulding Defects Troubleshooting</b><small>PowerPoint · defects and corrective actions</small><br><a href="presentations/Injection_Moulding_Defects_Troubleshooting_Guide.pptx" target="_blank">Open / Download PPT ↗</a></div></div>
+<div><div class="resource"><b>GD&amp;T Complete Details</b><small>PowerPoint</small><br><a href="presentations/GD_T_Complete_Details_Mechanical_Engineering.pptx" target="_blank">Open / Download PPT ↗</a></div><div class="resource"><b>AutoCAD Beginner to Advanced</b><small>PowerPoint</small><br><a href="presentations/AutoCAD_Beginner_to_Advanced_Tutorial.pptx" target="_blank">Open / Download PPT ↗</a></div><div class="resource"><b>Mechanical Engineering Measuring Instruments</b><small>PowerPoint · measurement reference</small><br><a href="presentations/Mechanical_Engineering_Measuring_Instruments_Complete_Illustrated_PPT.pptx" target="_blank">Open / Download PPT ↗</a></div><div class="resource"><b>Injection Moulding Tool Design &amp; Manufacturing</b><small>PDF reference</small><br><a href="presentations/Injection Moulding Tool Design Manufacturing.pdf" target="_blank">Open / Download PDF ↗</a></div><div class="resource"><b>Diploma Mechanical Engineer Interview Preparation</b><small>PowerPoint · interview revision</small><br><a href="presentations/Diploma_Mechanical_Engineer_Interview_Preparation_Complete.pptx" target="_blank">Open / Download PPT ↗</a></div></div>
+</div><p class="muted">If you upload this site to GitHub Pages or another host, upload the <code>presentations</code> folder alongside <code>index.html</code>. Keep the file names unchanged so the links work.</p></section>
+<footer class="footer">© <span id="year"></span> @cad_with_manufacturing · Made for engineering learning.<br>Always verify calculations, machine codes, tolerances and design decisions against applicable standards, actual material data and manufacturer documentation.</footer>
 </main>
-
 <script>
-"use strict";
-
-function numberValue(id) {
-  return Number(document.getElementById(id).value);
-}
-function formatNumber(value, digits=2) {
-  return value.toLocaleString("en-IN", {maximumFractionDigits:digits});
-}
-function showError(id, message) {
-  document.getElementById(id).textContent = message;
-}
-
-function updateCylinderKit(){
-  const type=document.getElementById('cylinderType').value;
-  const bore=Number(document.getElementById('cylinderBoreKit').value);
-  const doubleActing=type==='double';
-  const portMap={12:'M5 or catalogue-specified',16:'M5 or catalogue-specified',20:'G1/8 or catalogue-specified',25:'G1/8 or catalogue-specified',32:'G1/8 or G1/4 (check model)',40:'G1/4 (check model)',50:'G1/4 or G3/8 (check model)',63:'G3/8 (check model)',80:'G3/8 or G1/2 (check model)',100:'G1/2 (check model)'};
-  const port=portMap[bore]||'manufacturer-specified';
-  const parts=doubleActing?[
-    ['Cylinder','1 × double-acting cylinder, bore '+bore+' mm'],
-    ['Directional valve','1 × 5/2-way valve (solenoid or manual/pilot operated as required)'],
-    ['Air tubes','2 × tubes: cap-end port A and rod-end port B; select tube OD to match fittings and required flow'],
-    ['Ports / fittings','2 × cylinder-port fittings plus valve-port fittings; indicative port guidance: '+port],
-    ['Reed / magnetic switch','1–2 × compatible magnetic reed switches if the piston magnet and cylinder sensor groove support them'],
-    ['Flow controls','Typically 2 × one-way flow-control valves for meter-out speed adjustment'],
-    ['Air preparation','Filter/regulator and gauge; lubricator only if required by equipment'],
-    ['Exhaust silencer','Valve exhaust silencers as required'],
-    ['Electrical items','Matching connector/cable and correct control voltage if using a solenoid valve']
-  ]:[
-    ['Cylinder','1 × single-acting, spring-return cylinder, bore '+bore+' mm'],
-    ['Directional valve','Typically 1 × 3/2-way valve (confirm normally-open/closed function and actuation)'],
-    ['Air tube','1 × pressure tube to the cylinder; select tube OD to match fittings and required flow'],
-    ['Ports / fittings','Cylinder and valve fittings; indicative port guidance: '+port],
-    ['Reed / magnetic switch','Optional compatible magnetic reed switch only if the cylinder includes a suitable magnet/groove'],
-    ['Flow control','1 × one-way flow-control valve may be used to adjust speed, depending on circuit'],
-    ['Air preparation','Filter/regulator and gauge; lubricator only if required by equipment'],
-    ['Exhaust silencer','Valve exhaust silencer as required'],
-    ['Electrical items','Matching connector/cable and correct control voltage if using a solenoid valve']
-  ];
-  document.getElementById('cylinderKit').innerHTML='<strong>Typical accessory list</strong><ul>'+parts.map(p=>'<li><strong>'+p[0]+':</strong> '+p[1]+'</li>').join('')+'</ul><div class="formula"><strong>Basic connection:</strong> '+(doubleActing?'Compressed air → 5/2 valve → two tubes → cylinder ports A and B. The valve alternates supply/exhaust to extend and retract.':'Compressed air → 3/2 valve → one tube → cylinder port. The valve supplies air for one stroke; the spring returns the piston.')+'</div><small>Port sizes shown are rough selection guidance, not guaranteed specifications. Bore alone cannot determine the exact port thread or tube size.</small>';
-}
-
-function pneumatic() {
-  const bore=numberValue("bore"), rod=numberValue("rod"), pressure=numberValue("pressure");
-  if (![bore,rod,pressure].every(Number.isFinite) || bore<=0 || rod<0 || rod>=bore || pressure<0) {
-    showError("pResult","Enter valid values. Rod diameter must be smaller than bore diameter.");
-    return;
-  }
-  const area=Math.PI*bore*bore/4;
-  const retractArea=Math.PI*(bore*bore-rod*rod)/4;
-  const extension=area*pressure*0.1;
-  const retraction=retractArea*pressure*0.1;
-  document.getElementById("pResult").innerHTML =
-    `<strong>Extension force:</strong> ${formatNumber(extension)} N (${formatNumber(extension/1000)} kN)<br>
-     <strong>Retraction force:</strong> ${formatNumber(retraction)} N (${formatNumber(retraction/1000)} kN)`;
-}
-function hydraulic() {
-  const bore=numberValue("hBore"), pressure=numberValue("hPressure");
-  if (![bore,pressure].every(Number.isFinite) || bore<=0 || pressure<0) {
-    showError("hResult","Enter a positive bore diameter and non-negative pressure.");
-    return;
-  }
-  const force=Math.PI*bore*bore/4*pressure*0.1;
-  document.getElementById("hResult").innerHTML =
-    `<strong>Ideal extension force:</strong> ${formatNumber(force)} N<br>
-     <strong>Force:</strong> ${formatNumber(force/1000)} kN (${formatNumber(force/9806.65)} metric tonnes-force)`;
-}
-function lathe() {
-  const speed=numberValue("speed"), diameter=numberValue("diameter"), feed=numberValue("feed");
-  if (![speed,diameter,feed].every(Number.isFinite) || speed<=0 || diameter<=0 || feed<=0) {
-    showError("lResult","Enter positive cutting speed, diameter and feed values.");
-    return;
-  }
-  const rpm=1000*speed/(Math.PI*diameter);
-  document.getElementById("lResult").innerHTML =
-    `<strong>Spindle speed:</strong> ${formatNumber(rpm,0)} RPM<br>
-     <strong>Feed rate:</strong> ${formatNumber(rpm*feed)} mm/min`;
-}
-
-const plasticMaterial=document.getElementById("plasticMaterial");
-const plasticStrength=document.getElementById("plasticStrength");
-const cutShape=document.getElementById("cutShape");
-
-function updatePlasticShape() {
-  const shape=cutShape.value;
-  document.getElementById("circleFields").classList.toggle("hidden",shape!=="circle");
-  document.getElementById("rectangleFields").classList.toggle("hidden",shape!=="rectangle");
-  document.getElementById("perimeterFields").classList.toggle("hidden",shape!=="perimeter");
-  calculatePlasticPunching();
-}
-function calculatePlasticPunching() {
-  const strength=numberValue("plasticStrength");
-  const thickness=numberValue("plasticThickness");
-  const count=numberValue("plasticCount");
-  const allowance=numberValue("plasticFactor");
-  let perimeter=0;
-  const shape=cutShape.value;
-  if(shape==="circle") {
-    perimeter=Math.PI*numberValue("cutDiameter");
-  } else if(shape==="rectangle") {
-    perimeter=2*(numberValue("cutLength")+numberValue("cutWidth"));
-  } else {
-    perimeter=numberValue("cutPerimeter");
-  }
-  const result=document.getElementById("plasticResult");
-  const dimensionsValid = shape==="circle"
-    ? numberValue("cutDiameter")>0
-    : shape==="rectangle"
-      ? numberValue("cutLength")>0 && numberValue("cutWidth")>0
-      : numberValue("cutPerimeter")>0;
-  if(![strength,thickness,count,allowance,perimeter].every(Number.isFinite) ||
-     strength<=0 || thickness<=0 || count<1 || !Number.isInteger(count) ||
-     allowance<0 || perimeter<=0 || !dimensionsValid) {
-    result.textContent="Please enter valid positive dimensions, strength and quantity. Allowance cannot be negative.";
-    return;
-  }
-  const totalPerimeter=perimeter*count;
-  const idealForceN=totalPerimeter*thickness*strength;
-  const designForceN=idealForceN*(1+allowance/100);
-  result.innerHTML=`
-    <h3>Automatic Calculation Result</h3>
-    <p><strong>Cutting perimeter per part:</strong> ${formatNumber(perimeter)} mm</p>
-    <p><strong>Total cutting perimeter:</strong> ${formatNumber(totalPerimeter)} mm</p>
-    <p><strong>Ideal punching force:</strong> ${formatNumber(idealForceN)} N</p>
-    <p><strong>Ideal force:</strong> ${formatNumber(idealForceN/1000)} kN</p>
-    <p><strong>Ideal force:</strong> ${formatNumber(idealForceN/9806.65)} metric tonnes-force</p>
-    <hr>
-    <p><strong>Force with ${formatNumber(allowance)}% allowance:</strong> ${formatNumber(designForceN/1000)} kN</p>
-    <p><strong>Force with allowance:</strong> ${formatNumber(designForceN/9806.65)} metric tonnes-force</p>
-    <small>Estimate only. Allowance is not a certified press-sizing safety factor.</small>`;
-}
-plasticMaterial.addEventListener("change",function(){
-  if(this.value!=="custom") plasticStrength.value=this.value;
-  calculatePlasticPunching();
-});
-cutShape.addEventListener("change",updatePlasticShape);
-["plasticStrength","cutDiameter","cutLength","cutWidth","cutPerimeter","plasticThickness","plasticCount","plasticFactor"]
-  .forEach(id=>document.getElementById(id).addEventListener("input",calculatePlasticPunching));
-
-const notes = {
-solidworks:{title:"SolidWorks — Complete Study Notes",intro:"SolidWorks is a 3D CAD application used to create parametric parts, assemblies and engineering drawings.",sections:[
-["1. Main workflow",["Create a Part, Assembly or Drawing document.","Start a 2D sketch on a plane or planar face.","Add geometry, dimensions and relations to define the sketch.","Use Extruded Boss/Base, Extruded Cut, Revolve, Fillet and Chamfer.","Save the model and create an engineering drawing when required."]],
-["2. Sketching and relations",["Common entities: line, rectangle, circle, arc, slot and spline.","Relations include coincident, horizontal, vertical, tangent, concentric, parallel and perpendicular.","Blue sketch geometry is typically under-defined; black geometry is typically fully defined.","Use dimensions to control size and avoid redundant dimensions."]],
-["3. Important features",["Extruded Boss/Base adds material; Extruded Cut removes material.","Revolved Boss/Base creates a shape by revolving a profile around an axis.","Hole Wizard creates standardised holes and hole callouts.","Fillet rounds edges; Chamfer creates a bevel.","Pattern and Mirror repeat features or geometry."]],
-["4. Assemblies",["Insert component parts into an assembly.","Use mates such as coincident, concentric, distance, angle and parallel.","Constrain components and check interference and intended degrees of freedom."]],
-["5. Engineering drawings",["Create front, top, right, isometric and section views as needed.","Add dimensions, centre marks, hole callouts, tolerances and notes.","Follow the drawing standard and revision requirements specified by your organisation."]],
-["Practice task",["Model a stepped shaft, create a bracket, assemble the parts and produce a dimensioned drawing."]]]},
-cnc:{title:"CNC & VMC — Complete Study Notes",intro:"CNC means Computer Numerical Control. A VMC commonly uses a vertically oriented spindle for milling.",sections:[
-["1. Coordinate systems",["Machine coordinates refer to the machine reference system.","Work coordinates set a part datum; common work offsets include G54 through G59 on many controls.","Confirm machine axis directions and controller conventions before running a program."]],
-["2. Tool and work offsets",["Work offset defines the part datum in machine coordinates.","Tool length offset compensates for tool length, often using H registers.","Cutter compensation may use D registers and G41/G42 where supported.","Offset behaviour varies by controller."]],
-["3. Common G codes",["G00: rapid positioning.","G01: linear interpolation at programmed feed.","G02/G03: clockwise/counter-clockwise circular interpolation, subject to controller conventions.","G17/G18/G19: select machining plane on many controls.","G20/G21: inch/metric input on many controls.","G90/G91: absolute/incremental programming on many controls."]],
-["4. Common M codes",["M03/M04: spindle clockwise/counter-clockwise on many controls.","M05: stop spindle; M06: tool change on many machining centres.","M08/M09: coolant on/off on many controls.","M30: end program and reset on many controls.","Verify code meanings for the exact machine and controller."]],
-["5. Safe setup checklist",["Check drawing revision, material, workholding and tool list.","Set work and tool offsets carefully; verify tool clearance and simulate the program.","Use approved dry-run, single-block and feed-override procedures.","Follow site safety rules; never assume sample code is safe unchanged."]],
-["Example RPM formula",["RPM = (1000 × cutting speed in m/min) / (π × diameter in mm).","Example: 30 m/min and 50 mm gives approximately 191 RPM."]]]},
-gdt:{title:"GD&T — Complete Study Notes",intro:"Geometric Dimensioning and Tolerancing communicates allowable variation in part geometry and inspection.",sections:[
-["1. Why GD&T is used",["Defines allowable variation beyond simple size dimensions.","Supports consistent interpretation between design, manufacturing and inspection.","Use the drawing's stated standard, such as ASME Y14.5 or ISO GPS."]],
-["2. Datums",["A datum is a theoretically exact reference derived from a real datum feature.","Datum reference frames often use primary, secondary and tertiary datums.","Datum order and setup matter; follow the specified standard."]],
-["3. Common geometric controls",["Straightness and flatness control form.","Circularity controls each circular cross-section.","Perpendicularity and parallelism control orientation relative to a datum.","Position controls feature location, commonly hole patterns.","Profile controls outlines or surfaces.","Circular and total runout control variation during rotation relative to a datum axis."]],
-["4. Feature control frame",["Typically contains a geometric characteristic symbol, tolerance value and applicable modifiers or datum references.","Interpret symbols according to the governing standard.","Material-condition modifiers such as MMC/LMC must be interpreted correctly."]],
-["5. Drawing interpretation",["Identify standard and units; establish datum reference frame.","Read size limits and geometric control frames together.","Choose an appropriate inspection method, such as CMM, height gauge or functional gauge."]],
-["Quick reminder",["Size tolerance and geometric tolerance control different requirements; one does not automatically replace the other."]]]},
-pneumatics:{title:"Pneumatics — Complete Study Notes",intro:"Pneumatic systems use compressed air to transmit energy and operate actuators.",sections:[
-["1. Main components",["Compressor supplies compressed air.","Filter and regulator condition the supply; lubricator is used where required.","Directional valve routes air to the actuator.","Cylinder converts air pressure into linear movement.","Flow control valve adjusts speed; sensors detect position."]],
-["2. Directional control valves",["A 3/2 valve has three ports and two positions; often used with single-acting cylinders.","A 5/2 valve has five ports and two positions; often used with double-acting cylinders.","Check the valve symbol and manufacturer data for port numbering and normal state."]],
-["3. Cylinder types",["Single-acting cylinder uses air in one direction and spring or external force for return.","Double-acting cylinder uses air on both sides for extension and retraction.","Reed or electronic sensors detect piston position when compatible."]],
-["4. Force calculation",["Piston area A = πD²/4.","Ideal extension force = pressure × piston area.","Retract force uses annular area π(D² − d²)/4.","With pressure in bar and area in mm²: force in N ≈ pressure × 0.1 × area.","Actual force is lower due to friction and pressure losses."]],
-["5. Speed, circuit and safety",["Speed depends on airflow, load, pressure and circuit design.","Identify supply, valve ports, actuator ports and exhausts on a circuit diagram.","Isolate and depressurise the system before maintenance; compressed air can cause serious injury."]],
-["6. Troubleshooting",["Slow movement: check pressure, flow controls, restrictions and load.","No movement: check supply, valve actuation, end stops and binding.","Unexpected movement: isolate safely and check valve state, sensors and control logic."]]]}
+'use strict';
+const notes={
+mould:{title:'Injection Mould Design — Complete Study Notes',intro:'An injection mould is a precision tool that shapes molten plastic under pressure, then cools and ejects the solidified part.',sections:[['1. Main mould components',['Fixed half / cavity side: usually contains the cavity and is mounted to the stationary platen.','Moving half / core side: commonly contains the core and ejection system.','Sprue bush: guides melt from the machine nozzle into the mould runner system.','Runner and gate: distribute melt and control entry into the cavity.','Cooling channels: remove heat to support cycle time and part quality.','Ejector pins, sleeves or plates: release the part after sufficient cooling.','Guide pillars and bushes: align the two mould halves.']],['2. Moulding cycle',['Close and clamp the mould.','Inject melt through the sprue, runner and gate.','Pack and hold to compensate for material contraction while the gate remains open.','Cool the part until it is sufficiently rigid.','Open the mould and eject the part.','Close the mould and repeat.']],['3. Draft angle',['Draft is a taper on walls parallel to the mould opening direction.','It reduces friction, scuffing and ejection damage.','Required draft depends on resin, texture, wall depth, shrinkage and surface finish.','Use the product drawing and toolmaker guidance; do not apply one angle to every feature.']],['4. Shrinkage',['Plastic contracts as it cools; mould dimensions may need compensation.','Shrinkage depends on resin grade, fibre content, wall thickness, packing, gate location and processing conditions.','Use the supplier data and validated process data for the selected grade.']],['5. Gate and runner basics',['Common gate types include edge, fan, tab, pin, submarine/tunnel and direct/sprue gates.','Gate location affects filling pattern, weld lines, packing, appearance and warpage.','Runner layout should balance flow, reduce pressure loss and avoid unnecessary material waste.']],['6. Cooling and ejection',['Keep cooling reasonably uniform to reduce cycle time and warpage.','Avoid ejector placement that marks a visible or weak surface.','Check adequate ejector travel, return, venting and safe release.']],['7. Design review checklist',['Confirm part drawing, resin grade, annual volume and cosmetic requirements.','Review wall thickness, ribs, bosses, undercuts, parting line and draft.','Check gate position, weld lines, vents, cooling access and ejection.','Plan mould steel, wear areas, standard components, maintenance and trials.']]],files:[['Injection Mould Design Calculations A to Z Toolkit','presentations/Injection_Mould_Design_Calculations_A_to_Z_Toolkit.pptx'],['Injection Mould Parts — Illustrated Explanation','presentations/Injection_Mould_Parts_Illustrated_Explanation.pptx'],['Complete Mould Manufacturing Process','presentations/Complete_Mould_Manufacturing_Process_Illustrated.pptx'],['Moulding Defects Troubleshooting Guide','presentations/Injection_Moulding_Defects_Troubleshooting_Guide.pptx'],['Mould Tool Design & Manufacturing PDF','presentations/Injection Moulding Tool Design Manufacturing.pdf']]},
+defects:{title:'Injection Moulding Defects — Troubleshooting',intro:'Defects can be caused by material, tool design, machine settings or maintenance. Change one verified variable at a time and document trials.',sections:[['Common defects and checks',['Short shot: check material drying where required, melt/mould temperature, injection speed/pressure, venting and gate/runner restriction.','Flash: inspect parting-line damage, mould clamping, excessive cavity pressure and worn shut-offs.','Sink marks: review wall transitions, ribs/bosses, packing/holding, gate freeze and cooling.','Warpage: check uneven cooling, non-uniform wall thickness, packing balance, gate position and ejection timing.','Burn marks: inspect trapped-air venting and excessive shear or residence time.','Weld lines: review flow-front meeting points, gate location, melt temperature, venting and fill profile.','Splay/silver streaks: verify resin drying and handling, contamination and processing conditions.']],['Troubleshooting method',['Record defect location and machine/process settings.','Confirm resin grade, drying instructions and lot traceability.','Inspect vents, gates, runners, cooling and mould condition.','Make controlled changes within supplier and machine limits.','Validate results over a stable run before standardising settings.']]]},
+solidworks:{title:'SolidWorks — Study Notes',intro:'SolidWorks is a parametric 3D CAD tool used for parts, assemblies and engineering drawings.',sections:[['Workflow',['Create a Part, Assembly or Drawing document.','Create a sketch on a plane or planar face; add relations and dimensions.','Use Boss-Extrude, Cut-Extrude, Revolve, Fillet, Chamfer, Hole Wizard, Pattern and Mirror.','Build assemblies with mates such as coincident, concentric, distance and angle.','Create drawing views, dimensions, tolerances, notes and revision information.']],['Sketch basics',['Blue geometry is commonly under-defined; black geometry is commonly fully defined.','Common relations: coincident, horizontal, vertical, tangent, concentric, parallel and perpendicular.','Avoid redundant dimensions; fully define critical geometry.']],['Quality checks',['Use meaningful feature names and stable references.','Check interference and degrees of freedom in assemblies.','Use the drawing standard specified by your organisation.']]]},
+autocad:{title:'AutoCAD — Study Notes',intro:'AutoCAD is used for 2D drafting and can also support 3D workflows.',sections:[['Essential commands',['LINE, PLINE, CIRCLE, ARC, RECTANG and OFFSET create geometry.','TRIM, EXTEND, FILLET, CHAMFER, MIRROR, ARRAY and MOVE edit geometry.','Use OSNAP, ORTHO, POLAR and object tracking to improve accuracy.','Organise drawings with layers, linetypes, lineweights and clear naming.']],['Dimensions and printing',['Use DIMSTYLE to control dimension appearance.','Set units, drawing scale, paper size and plot style.','Check lineweights, text height, viewports and print preview before issuing drawings.']]],files:[['AutoCAD Beginner to Advanced Tutorial','presentations/AutoCAD_Beginner_to_Advanced_Tutorial.pptx']]},
+cnc:{title:'CNC & VMC — Study Notes',intro:'CNC means Computer Numerical Control. A VMC commonly has a vertically oriented spindle.',sections:[['Coordinates and offsets',['Machine coordinates refer to the machine reference system.','Work offsets such as G54–G59 set a part datum on many controls.','Tool length and cutter compensation use controller-specific offset conventions.']],['Common G codes',['G00 rapid positioning; G01 linear interpolation.','G02/G03 circular interpolation, subject to controller conventions.','G17/G18/G19 select a machining plane on many controls.','G20/G21 select inch/metric input on many controls.','G90/G91 select absolute/incremental programming on many controls.']],['Common M codes',['M03/M04 spindle direction; M05 spindle stop on many controls.','M06 tool change on many machining centres.','M08/M09 coolant on/off; M30 program end/reset on many controls.','Always verify the exact machine and controller manual.']],['Safe setup',['Verify drawing revision, workholding, tool list, offsets and clearances.','Simulate the program and follow approved dry-run/single-block procedures.','Never run sample code unchanged without qualified review.']]]},
+gdt:{title:'GD&T — Study Notes',intro:'Geometric Dimensioning and Tolerancing defines allowable geometric variation and supports consistent design, manufacturing and inspection.',sections:[['Datums and frames',['A datum is a theoretically exact reference established from a real datum feature.','Primary, secondary and tertiary datums constrain degrees of freedom in a datum reference frame.']],['Tolerance groups',['Form: straightness, flatness, circularity and cylindricity.','Orientation: angularity, perpendicularity and parallelism.','Location: position, concentricity or symmetry where specified by the applicable standard.','Profile: line or surface profile.','Runout: circular or total runout.']],['Drawing interpretation',['Read the feature control frame from left to right.','Identify the controlled feature, tolerance zone and datum references.','Apply the standard stated on the drawing, such as ASME Y14.5 or ISO GPS.','Do not assume symbols have identical rules across standards.']]],files:[['GD&T Complete Details — PowerPoint','presentations/GD_T_Complete_Details_Mechanical_Engineering.pptx'],['GD&T Complete Details — PDF','presentations/GD_T_Complete_Details_Mechanical_Engineering.pdf']]},
+measurement:{title:'Measuring Instruments — Study Notes',intro:'Choose an instrument based on required range, resolution, tolerance and measurement method.',sections:[['Common instruments',['Vernier caliper: measures external, internal and depth dimensions within its design range.','Outside micrometer: precision external measurement; use the ratchet/friction mechanism consistently.','Dial indicator: comparative displacement or runout checking with a suitable fixture.','Slip gauges: precision length standards used in building reference dimensions.','Bore gauge: comparative internal diameter checking, commonly set against a reference.']],['Good measurement practice',['Clean the workpiece and contact faces.','Check zero and instrument condition before measuring.','Use consistent measuring force and suitable temperature conditions.','Avoid parallax and misalignment; take repeated readings when appropriate.','Record instrument ID and calibration status when required.']]],files:[['Mechanical Engineering Measuring Instruments — PowerPoint','presentations/Mechanical_Engineering_Measuring_Instruments_Complete_Illustrated_PPT.pptx']]},
+pneumatics:{title:'Pneumatics — Study Notes',intro:'Pneumatic systems use compressed air to transmit power and control motion.',sections:[['Main components',['Compressor and air preparation: filtration, regulation and lubrication where required.','Directional control valves route air to extend or retract actuators.','3/2 valves have three ports and two positions; often used for single-acting actuators.','5/2 valves have five ports and two positions; commonly used for double-acting cylinders.','Reed or proximity sensors can detect cylinder position.']],['Cylinder force',['Theoretical extension force = pressure × piston area.','Retraction force = pressure × (piston area − rod area).','Use consistent units; pressure in N/mm² and area in mm² gives force in N.','Actual force is lower due to friction and pressure losses.']],['Safety',['Isolate and depressurise before maintenance.','Use rated components, secure tubing and suitable exhaust silencers.','Confirm sensor compatibility and valve function before operation.']]]},
+hydraulics:{title:'Hydraulics — Study Notes',intro:'Hydraulic systems use pressurised fluid to generate high force and controlled movement.',sections:[['Core components',['Reservoir, pump, filter, pressure relief valve, directional valve, flow control and actuator.','Pressure is related to load; flow rate primarily affects actuator speed.','A relief valve protects the system from excessive pressure within its rated setup.']],['Force formula',['Ideal cylinder force = pressure × piston area.','With pressure in bar and area in mm²: force (N) = pressure (bar) × area (mm²) × 0.1.','Actual performance depends on friction, leakage and system losses.']],['Maintenance',['Use the specified fluid and cleanliness level.','Inspect leaks, hoses, filters, temperature and abnormal noise.','Never search for leaks with a hand; high-pressure fluid injection injuries are emergencies.']]]},
+lathe:{title:'Lathe & Machining — Study Notes',intro:'A lathe rotates the workpiece while a tool removes material to create cylindrical and related features.',sections:[['Common operations',['Facing, straight turning, taper turning, grooving, parting, threading, drilling and boring.','Select tool geometry and workholding appropriate to material and operation.']],['Cutting speed and RPM',['RPM = (1000 × cutting speed in m/min) ÷ (π × work diameter in mm).','Feed rate (mm/min) = RPM × feed per revolution (mm/rev).','Choose cutting data from tool supplier recommendations and machine limits.']],['Safety',['Remove chuck keys before starting.','Use guards and secure workholding; do not measure or clear chips while rotating.','Stop the machine before adjustments and chip removal.']]]},
+materials:{title:'Engineering Materials & Heat Treatment',intro:'Material selection balances strength, stiffness, wear, corrosion resistance, weight, cost and manufacturability.',sections:[['Material families',['Carbon and alloy steels: widely used for shafts, tools and structural components depending on grade and treatment.','Aluminium alloys: low density and useful corrosion resistance; properties depend on alloy and temper.','Engineering plastics: lightweight and corrosion resistant; temperature, creep and chemical resistance vary by grade.','Stainless steels: corrosion resistance depends on grade and environment.']],['Heat treatment concepts',['Annealing can soften material and relieve stress.','Normalising refines structure in suitable steels.','Quenching increases hardness in hardenable steels but may cause distortion or cracking.','Tempering after hardening adjusts hardness and toughness.','Use the material specification and qualified heat-treatment procedure.']]]},
+interview:{title:'Mechanical Engineering Interview Revision',intro:'Use these questions to revise concepts and practise explaining the reason behind each answer.',sections:[['Core questions',['What is the difference between stress and strain?','What do tolerance, allowance and fit mean?','What is the difference between CNC and conventional machining?','Why is draft provided in injection moulded parts?','What is the purpose of a datum in GD&T?','How do cutting speed, feed and depth of cut affect machining?','What is the difference between pneumatic and hydraulic systems?']],['Answer method',['Define the concept in one sentence.','Explain the working principle or formula.','Give a practical manufacturing example.','Mention safety, quality or design limitations where relevant.']]],files:[['Diploma Mechanical Engineer Interview Preparation — PowerPoint','presentations/Diploma_Mechanical_Engineer_Interview_Preparation_Complete.pptx']]}
 };
-
-mould:{title:"Injection Mould Design — Study Notes",intro:"Injection moulding uses a mould cavity and core to form plastic parts. The design must account for material behaviour, machine capability, cooling and safe ejection.",sections:[
-["1. Main mould components",["Fixed half (A-side) and moving half (B-side).","Core forms internal features; cavity forms external features.","Guide pillars and bushes align the two halves.","Sprue, runner and gate deliver melt to the cavity.","Ejector pins or another suitable system release the part.","Cooling channels remove heat and help control cycle time and warpage."]],
-["2. Important design concepts",["Parting line: the interface where mould halves separate; choose it to support ejection and acceptable flash control.","Draft angle: taper on walls parallel to the opening direction to help release the part.","Shrinkage: material- and process-dependent contraction; use grade-specific data and validate dimensions.","Wall thickness: keep reasonably uniform where possible to reduce sink, voids and warpage.","Gate location: consider filling pattern, weld lines, appearance, packing and gate removal."]],
-["3. Runner, gate and venting",["Runner dimensions depend on material, part size, pressure drop and cycle goals.","Gate types include edge, pin, submarine/tunnel, fan and hot-tip gates.","Vents allow trapped air and gases to escape; poor venting can cause burns or short shots.","Avoid blindly applying one runner or gate size to every part; validate with analysis and trials."]],
-["4. Cooling and ejection",["Place cooling close enough to remove heat uniformly while maintaining tool strength.","Uneven cooling can cause warpage, long cycles and dimensional variation.","Use adequate draft, suitable ejector positions and sufficient ejection area.","Check for undercuts; slides, lifters or collapsible cores may be required."]],
-["5. Design review checklist",["Confirm resin grade, shrinkage data, part drawing and critical dimensions.","Review parting line, draft, wall thickness, ribs, bosses and undercuts.","Check gate, runner, vent, cooling and ejection layout.","Review mould steel, standard components, machine tie-bar/shot capacity and maintenance access.","Validate with mould-flow analysis where appropriate, mould trials and dimensional inspection."]]]}
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  })[char]);
-}
-function togglePptList() {
-  const panel=document.getElementById("pptPanel");
-  const button=document.getElementById("pptToggle");
-  const opening=panel.classList.contains("hidden");
-  panel.classList.toggle("hidden",!opening);
-  button.setAttribute("aria-expanded",String(opening));
-  button.textContent=opening?"📚 Hide Notes":"📚 Notes";
-  if(opening) panel.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
-function openNote(key) {
-  const note=notes[key]; if(!note)return;
-  const detail=document.getElementById("noteDetail");
-  let html='<button type="button" class="back-button" onclick="closeNote()">← Back to all engineering notes</button>';
-  html+='<h2>'+escapeHTML(note.title)+'</h2><p>'+escapeHTML(note.intro)+'</p>';
-  note.sections.forEach(section=>{
-    html+='<h3>'+escapeHTML(section[0])+'</h3><ul>';
-    section[1].forEach(item=>html+='<li>'+escapeHTML(item)+'</li>');
-    html+='</ul>';
-  });
-  if(key==="mould"){html+='<div class="ppt-panel"><h3>📑 Injection Mould Design PPT</h3><p>Open the detailed calculation toolkit presentation.</p><a class="button" href="./presentations/Injection_Mould_Design_Calculations_A_to_Z_Toolkit.pptx" target="_blank" rel="noopener">Open / Download Mould PPT ↗</a></div>';}
-  html+='<p class="muted">Use relevant manufacturer documentation, drawing standards and workplace procedures for real engineering work.</p>';
-  detail.innerHTML=html;
-  detail.classList.remove("hidden");
-  document.getElementById("notesGrid").classList.add("hidden");
-  document.getElementById("noteSearch").classList.add("hidden");
-  detail.focus();
-  document.getElementById("notes").scrollIntoView({behavior:"smooth",block:"start"});
-}
-function closeNote() {
-  document.getElementById("noteDetail").classList.add("hidden");
-  document.getElementById("notesGrid").classList.remove("hidden");
-  document.getElementById("noteSearch").classList.remove("hidden");
-  document.getElementById("noteSearch").focus();
-}
-function filterNotes() {
-  const query=document.getElementById("noteSearch").value.toLowerCase().trim();
-  document.querySelectorAll(".note-card").forEach(card=>{
-    card.classList.toggle("hidden",!card.textContent.toLowerCase().includes(query));
-  });
-}
-document.getElementById("year").textContent=new Date().getFullYear();
-pneumatic();
-hydraulic();
-lathe();
-updatePlasticShape();
-updateCylinderKit();
-</script>
-</body>
-</html>
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function openNote(id){const n=notes[id];if(!n)return;const box=document.getElementById('noteDetail');let out=`<button class="btn secondary" onclick="closeNote()">← Back to all topics</button><h2>${esc(n.title)}</h2><p>${esc(n.intro)}</p>`;for(const [heading,items] of n.sections){out+=`<h3>${esc(heading)}</h3><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;}if(n.files?.length){out+='<h3>📂 Related presentations / files</h3><div class="ppt-links">'+n.files.map(([label,url])=>`<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">${esc(label)} ↗</a>`).join('')+'</div>';}out+='<p class="muted"><small>Study reference only. Confirm critical engineering decisions against current standards, material data and manufacturer documentation.</small></p>';box.innerHTML=out;box.classList.remove('hide');box.focus();box.scrollIntoView({behavior:'smooth',block:'start'});}
+function closeNote(){const box=document.getElementById('noteDetail');box.classList.add('hide');document.getElementById('engineering-notes').scrollIntoView({behavior:'smooth'});}
+function filterTopics(){const q=document.getElementById('search').value.toLowerCase().trim(),cat=document.getElementById('category').value;document.querySelectorAll('.topic').forEach(c=>{const match=(!q||(c.dataset.search+' '+c.innerText).toLowerCase().includes(q))&&(cat==='all'||c.dataset.category===cat);c.classList.toggle('hide',!match);});}
+document.getElementById('search').addEventListener('input',filterTopics);document.getElementById('category').addEventListener('change',filterTopics);
+const num=id=>Number(document.getElementById(id).value);const fmt=(x,d=2)=>Number.isFinite(x)?x.toLocaleString('en-IN',{maximumFractionDigits:d}):'—';
+function calcPlastic(){const s=num('plasticStrength'),t=num('thickness'),count=num('count'),a=num('allowance'),shape=document.getElementById('shape').value;let p=shape==='circle'?Math.PI*num('diam'):shape==='rectangle'?2*(num('length')+num('width')):num('perim');const dims=shape==='circle'?num('diam')>0:shape==='rectangle'?num('length')>0&&num('width')>0:num('perim')>0;const el=document.getElementById('plasticResult');if(![s,t,count,a,p].every(Number.isFinite)||s<=0||t<=0||count<1||!Number.isInteger(count)||a<0||p<=0||!dims){el.textContent='Please enter valid positive dimensions, strength and whole-number quantity. Allowance cannot be negative.';return;}const ideal=p*count*t*s,design=ideal*(1+a/100);el.innerHTML=`<b>Perimeter per part:</b> ${fmt(p)} mm<br><b>Total perimeter:</b> ${fmt(p*count)} mm<br><b>Ideal force:</b> ${fmt(ideal)} N · ${fmt(ideal/1000)} kN · ${fmt(ideal/9806.65)} metric tonnes-force<br><b>Force with ${fmt(a)}% allowance:</b> ${fmt(design/1000)} kN · ${fmt(design/9806.65)} metric tonnes-force`}
+function shapeFields(){const s=document.getElementById('shape').value;document.getElementById('diamField').classList.toggle('hide',s!=='circle');document.getElementById('lengthField').classList.toggle('hide',s!=='rectangle');document.getElementById('widthField').classList.toggle('hide',s!=='rectangle');document.getElementById('perimField').classList.toggle('hide',s!=='perimeter');calcPlastic()}
+function calcPneumatic(){const b=num('bore'),r=num('rod'),p=num('pressure'),el=document.getElementById('pneumaticResult');if(![b,r,p].every(Number.isFinite)||b<=0||r<0||r>=b||p<0){el.textContent='Enter valid values. Rod must be smaller than bore.';return;}const area=Math.PI*b*b/4,ret=Math.PI*(b*b-r*r)/4,ex=area*p*.1,rf=ret*p*.1;el.innerHTML=`<b>Extension:</b> ${fmt(ex)} N (${fmt(ex/1000)} kN)<br><b>Retraction:</b> ${fmt(rf)} N (${fmt(rf/1000)} kN)`}
+function calcHydraulic(){const b=num('hBore'),p=num('hPressure'),el=document.getElementById('hydraulicResult');if(![b,p].every(Number.isFinite)||b<=0||p<0){el.textContent='Enter a positive bore and non-negative pressure.';return;}const f=Math.PI*b*b/4*p*.1;el.innerHTML=`<b>Ideal extension force:</b> ${fmt(f)} N<br><b>Force:</b> ${fmt(f/1000)} kN (${fmt(f/9806.65)} metric tonnes-force)`}
+function calcLathe(){const s=num('speed'),d=num('diameter'),f=num('feed'),el=document.getElementById('latheResult');if(![s,d,f].every(Number.isFinite)||s<=0||d<=0||f<=0){el.textContent='Enter positive cutting speed, diameter and feed.';return;}const rpm=1000*s/(Math.PI*d);el.innerHTML=`<b>Spindle speed:</b> ${fmt(rpm,0)} RPM<br><b>Feed rate:</b> ${fmt(rpm*f)} mm/min`}
+document.getElementById('shape').addEventListener('change',shapeFields);['plasticStrength','diam','length','width','perim','thickness','count','allowance'].forEach(id=>document.getElementById(id).addEventListener('input',calcPlastic));['bore','rod','pressure'].forEach(id=>document.getElementById(id).addEventListener('input',calcPneumatic));['hBore','hPressure'].forEach(id=>document.getElementById(id).addEventListener('input',calcHydraulic));['speed','diameter','feed'].forEach(id=>document.getElementById(id).addEventListener('input',calcLathe));document.getElementById('year').textContent=new Date().getFullYear();document.getElementById('topicCount').textContent=document.querySelectorAll('.topic').length;shapeFields();calcPneumatic();calcHydraulic();calcLathe();
+</script></body></html>
