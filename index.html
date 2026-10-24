@@ -20,6 +20,9 @@ h2{font-size:20px;color:var(--cyan);margin:0 0 12px}
 h3{margin:0 0 7px}
 p,small,.muted{color:var(--muted)}
 .brand{color:var(--orange);font-weight:bold}
+.brand-row{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.channel-logo{width:68px;height:68px;flex:0 0 68px;border-radius:14px;border:1px solid #36516f;background:#071222;padding:5px;object-fit:contain}
+.brand-row h1{line-height:1.2}
 a{color:var(--cyan)}
 label{display:block;margin-top:10px;font-size:14px}
 input,select,textarea{width:100%;padding:11px;margin-top:5px;color:white;background:var(--panel2);border:1px solid var(--line);border-radius:8px;font:inherit}
@@ -33,6 +36,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .note-card h3{color:var(--text);font-size:18px}
 .note-card p{font-weight:normal;margin-bottom:8px}
 .note-card .open-hint{color:var(--cyan);font-size:13px}
+.ppt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.ppt-card{display:block;padding:14px;border:1px solid var(--line);border-radius:10px;background:#0d192d;color:var(--text);text-decoration:none}
+.ppt-card strong{display:block;margin-bottom:5px}
+.ppt-card span{font-size:13px;color:var(--cyan)}
+.ppt-panel{margin-top:14px;padding:14px;border:1px solid #36516f;border-radius:12px;background:#0a1629}
 .note-detail{margin-top:16px;border:1px solid #36516f;border-radius:12px;padding:16px;background:#0a1629}
 .note-detail h3{color:var(--orange);margin-top:18px}
 .note-detail h3:first-child{margin-top:0}
@@ -47,15 +55,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .quiz-option input{width:auto;margin-top:5px}
 footer{text-align:center;padding:10px}
 hr{border:0;border-top:1px solid var(--line);margin:12px 0}
-@media(max-width:560px){body{padding:10px}header,section{padding:14px}.notes-grid{grid-template-columns:1fr}.note-card{min-height:unset}.note-detail{padding:12px}}
+@media(max-width:560px){body{padding:10px}header,section{padding:14px}.notes-grid,.ppt-grid{grid-template-columns:1fr}.note-card{min-height:unset}.note-detail{padding:12px}}
 @media print{body{background:white;color:#111;padding:0}header,section,.card,.note-detail{background:white;color:#111;border:1px solid #bbb}p,small,.muted,.note-detail li{color:#333}button,a{display:none!important}}
 </style>
 </head>
 <body>
 <main>
 <header>
-  <h1>⚙️ CAD &amp; MANUFACTURING</h1>
-  <p class="brand">@cad_with_manufacturing</p>
+  <div class="brand-row"><img class="channel-logo" src="./channel-logo.svg" alt="CAD with Manufacturing channel logo"><div><h1>CAD &amp; MANUFACTURING</h1><p class="brand">@cad_with_manufacturing</p></div></div>
   <p>CAD • 3D Design • CNC • GD&amp;T • Manufacturing</p>
   <a href="https://www.instagram.com/cad_with_manufacturing/" target="_blank" rel="noopener">Visit Instagram ↗</a>
 </header>
@@ -118,6 +125,20 @@ hr{border:0;border-top:1px solid var(--line);margin:12px 0}
 <button type="button" onclick="pneumatic()">Calculate Force</button>
 <div class="result" id="pResult">Enter dimensions to calculate.</div>
 <small>Ideal force only. Actual force is lower due to friction and pressure losses.</small>
+<hr>
+<h3>🧩 Pneumatic Cylinder Auto-Configurator</h3>
+<p>Select a cylinder type to automatically show the typical accessories and connection layout.</p>
+<label for="cylinderType">Select cylinder type</label>
+<select id="cylinderType" onchange="updateCylinderKit()">
+  <option value="double" selected>Double-acting cylinder</option>
+  <option value="single">Single-acting cylinder (spring return)</option>
+</select>
+<label for="cylinderBoreKit">Cylinder bore (mm)</label>
+<select id="cylinderBoreKit" onchange="updateCylinderKit()">
+  <option>12</option><option>16</option><option>20</option><option>25</option><option>32</option><option selected>40</option><option>50</option><option>63</option><option>80</option><option>100</option>
+</select>
+<div class="result" id="cylinderKit" aria-live="polite"></div>
+<small>Auto-generated starting checklist only. Confirm port thread, tube outer diameter, valve flow/Cv, coil voltage, sensor groove and reed-switch compatibility against the exact cylinder and valve manufacturer catalogue before ordering.</small>
 </section>
 
 <section>
@@ -137,18 +158,6 @@ hr{border:0;border-top:1px solid var(--line);margin:12px 0}
 <div class="result" id="lResult">Enter cutting parameters.</div>
 </section>
 
-<section id="notes">
-<h2>📚 Engineering Notes</h2>
-<p>Tap any topic to open study notes, key concepts, examples, and revision points.</p>
-<input id="noteSearch" type="search" placeholder="Search engineering topics..." aria-label="Search engineering notes" oninput="filterNotes()">
-<div class="notes-grid" id="notesGrid">
-<button type="button" class="note-card" data-topic="solidworks" onclick="openNote('solidworks')"><h3>SolidWorks</h3><p>Sketching, constraints, part modelling, assemblies and engineering drawings.</p><span class="open-hint">Open full notes →</span></button>
-<button type="button" class="note-card" data-topic="cnc" onclick="openNote('cnc')"><h3>CNC &amp; VMC</h3><p>Coordinate systems, work offsets, tool offsets and G/M code fundamentals.</p><span class="open-hint">Open full notes →</span></button>
-<button type="button" class="note-card" data-topic="gdt" onclick="openNote('gdt')"><h3>GD&amp;T</h3><p>Datums, feature control frames, geometric tolerances and drawing interpretation.</p><span class="open-hint">Open full notes →</span></button>
-<button type="button" class="note-card" data-topic="pneumatics" onclick="openNote('pneumatics')"><h3>Pneumatics</h3><p>3/2 and 5/2 valves, cylinder sizing and basic pneumatic circuits.</p><span class="open-hint">Open full notes →</span></button>
-</div>
-<div id="noteDetail" class="note-detail hidden" tabindex="-1" aria-live="polite"></div>
-</section>
 
 <section id="courses">
 <h2>🎓 Courses</h2>
@@ -156,6 +165,44 @@ hr{border:0;border-top:1px solid var(--line);margin:12px 0}
 <div class="card"><h3>CNC Programming Fundamentals</h3><p>Learn CNC programming concepts, common G codes and M codes.</p></div>
 <div class="card"><h3>Mechanical Design &amp; GD&amp;T</h3><p>Engineering drawings, fits, tolerances and design fundamentals.</p></div>
 <a href="https://wa.me/?text=Hello%2C%20I%20want%20to%20know%20about%20your%20CAD%20and%20Manufacturing%20courses." target="_blank" rel="noopener">Enquire about courses on WhatsApp</a>
+</section>
+
+<section id="quiz">
+<h2>🧠 Engineering Quiz</h2><p>Which formula calculates lathe RPM?</p>
+<label class="quiz-option"><input type="radio" name="quiz" value="0"> RPM = π × D × V</label>
+<label class="quiz-option"><input type="radio" name="quiz" value="1"> RPM = 1000 × V / (π × D)</label>
+<label class="quiz-option"><input type="radio" name="quiz" value="0"> RPM = D / V</label>
+<button type="button" onclick="checkQuiz()">Check Answer</button><div class="result" id="quizResult" aria-live="polite"></div>
+</section>
+
+<section id="notes">
+<h2>📚 Engineering Notes &amp; PPT Library</h2>
+<p>Choose a topic to read notes, or open the presentation list to access your engineering PPT files.</p>
+<button type="button" onclick="togglePptList()" aria-expanded="false" id="pptToggle">📚 Notes</button>
+<div id="pptPanel" class="ppt-panel hidden">
+  <h3>📑 Manufacturing &amp; Mechanical PPTs</h3>
+  <p>Tap a presentation to open or download it. Upload your .pptx files into a folder named <code>presentations</code> in your GitHub repository, using these exact filenames.</p>
+  <div class="ppt-grid">
+    <a class="ppt-card" href="./presentations/solidworks-basics.pptx" target="_blank" rel="noopener"><strong>1. SolidWorks Basics</strong><span>Open / Download PPT ↗</span></a>
+    <a class="ppt-card" href="./presentations/cnc-vmc-basics.pptx" target="_blank" rel="noopener"><strong>2. CNC &amp; VMC Basics</strong><span>Open / Download PPT ↗</span></a>
+    <a class="ppt-card" href="./presentations/gdt-basics.pptx" target="_blank" rel="noopener"><strong>3. GD&amp;T Fundamentals</strong><span>Open / Download PPT ↗</span></a>
+    <a class="ppt-card" href="./presentations/injection-moulding.pptx" target="_blank" rel="noopener"><strong>4. Injection Moulding</strong><span>Open / Download PPT ↗</span></a>
+    <a class="ppt-card" href="./presentations/pneumatics-hydraulics.pptx" target="_blank" rel="noopener"><strong>5. Pneumatics &amp; Hydraulics</strong><span>Open / Download PPT ↗</span></a>
+    <a class="ppt-card" href="./presentations/quality-control-tools.pptx" target="_blank" rel="noopener"><strong>6. 7 QC Tools</strong><span>Open / Download PPT ↗</span></a>
+    <a class="ppt-card" href="./presentations/metrology-measurement.pptx" target="_blank" rel="noopener"><strong>7. Metrology &amp; Measurement</strong><span>Open / Download PPT ↗</span></a>
+    <a class="ppt-card" href="./presentations/engineering-materials.pptx" target="_blank" rel="noopener"><strong>8. Engineering Materials</strong><span>Open / Download PPT ↗</span></a>
+  </div>
+</div>
+<hr>
+<input id="noteSearch" type="search" placeholder="Search engineering topics..." aria-label="Search engineering notes" oninput="filterNotes()">
+<div class="notes-grid" id="notesGrid">
+<button type="button" class="note-card" data-topic="solidworks" onclick="openNote('solidworks')"><h3>SolidWorks</h3><p>Sketching, constraints, part modelling, assemblies and engineering drawings.</p><span class="open-hint">Open full notes →</span></button>
+<button type="button" class="note-card" data-topic="cnc" onclick="openNote('cnc')"><h3>CNC &amp; VMC</h3><p>Coordinate systems, work offsets, tool offsets and G/M code fundamentals.</p><span class="open-hint">Open full notes →</span></button>
+<button type="button" class="note-card" data-topic="gdt" onclick="openNote('gdt')"><h3>GD&amp;T</h3><p>Datums, feature control frames, geometric tolerances and drawing interpretation.</p><span class="open-hint">Open full notes →</span></button>
+<button type="button" class="note-card" data-topic="pneumatics" onclick="openNote('pneumatics')"><h3>Pneumatics</h3><p>3/2 and 5/2 valves, cylinder sizing and basic pneumatic circuits.</p><span class="open-hint">Open full notes →</span></button>
+<button type="button" class="note-card" data-topic="mould" onclick="openNote('mould')"><h3>Injection Mould Design</h3><p>Mould components, parting line, draft, shrinkage, runner, gate, cooling and design calculations.</p><span class="open-hint">Open mould notes + PPT →</span></button>
+</div>
+<div id="noteDetail" class="note-detail hidden" tabindex="-1" aria-live="polite"></div>
 </section>
 
 
@@ -174,6 +221,37 @@ function formatNumber(value, digits=2) {
 function showError(id, message) {
   document.getElementById(id).textContent = message;
 }
+
+function updateCylinderKit(){
+  const type=document.getElementById('cylinderType').value;
+  const bore=Number(document.getElementById('cylinderBoreKit').value);
+  const doubleActing=type==='double';
+  const portMap={12:'M5 or catalogue-specified',16:'M5 or catalogue-specified',20:'G1/8 or catalogue-specified',25:'G1/8 or catalogue-specified',32:'G1/8 or G1/4 (check model)',40:'G1/4 (check model)',50:'G1/4 or G3/8 (check model)',63:'G3/8 (check model)',80:'G3/8 or G1/2 (check model)',100:'G1/2 (check model)'};
+  const port=portMap[bore]||'manufacturer-specified';
+  const parts=doubleActing?[
+    ['Cylinder','1 × double-acting cylinder, bore '+bore+' mm'],
+    ['Directional valve','1 × 5/2-way valve (solenoid or manual/pilot operated as required)'],
+    ['Air tubes','2 × tubes: cap-end port A and rod-end port B; select tube OD to match fittings and required flow'],
+    ['Ports / fittings','2 × cylinder-port fittings plus valve-port fittings; indicative port guidance: '+port],
+    ['Reed / magnetic switch','1–2 × compatible magnetic reed switches if the piston magnet and cylinder sensor groove support them'],
+    ['Flow controls','Typically 2 × one-way flow-control valves for meter-out speed adjustment'],
+    ['Air preparation','Filter/regulator and gauge; lubricator only if required by equipment'],
+    ['Exhaust silencer','Valve exhaust silencers as required'],
+    ['Electrical items','Matching connector/cable and correct control voltage if using a solenoid valve']
+  ]:[
+    ['Cylinder','1 × single-acting, spring-return cylinder, bore '+bore+' mm'],
+    ['Directional valve','Typically 1 × 3/2-way valve (confirm normally-open/closed function and actuation)'],
+    ['Air tube','1 × pressure tube to the cylinder; select tube OD to match fittings and required flow'],
+    ['Ports / fittings','Cylinder and valve fittings; indicative port guidance: '+port],
+    ['Reed / magnetic switch','Optional compatible magnetic reed switch only if the cylinder includes a suitable magnet/groove'],
+    ['Flow control','1 × one-way flow-control valve may be used to adjust speed, depending on circuit'],
+    ['Air preparation','Filter/regulator and gauge; lubricator only if required by equipment'],
+    ['Exhaust silencer','Valve exhaust silencer as required'],
+    ['Electrical items','Matching connector/cable and correct control voltage if using a solenoid valve']
+  ];
+  document.getElementById('cylinderKit').innerHTML='<strong>Typical accessory list</strong><ul>'+parts.map(p=>'<li><strong>'+p[0]+':</strong> '+p[1]+'</li>').join('')+'</ul><div class="formula"><strong>Basic connection:</strong> '+(doubleActing?'Compressed air → 5/2 valve → two tubes → cylinder ports A and B. The valve alternates supply/exhaust to extend and retract.':'Compressed air → 3/2 valve → one tube → cylinder port. The valve supplies air for one stroke; the spring returns the piston.')+'</div><small>Port sizes shown are rough selection guidance, not guaranteed specifications. Bore alone cannot determine the exact port thread or tube size.</small>';
+}
+
 function pneumatic() {
   const bore=numberValue("bore"), rod=numberValue("rod"), pressure=numberValue("pressure");
   if (![bore,rod,pressure].every(Number.isFinite) || bore<=0 || rod<0 || rod>=bore || pressure<0) {
@@ -302,10 +380,25 @@ pneumatics:{title:"Pneumatics — Complete Study Notes",intro:"Pneumatic systems
 ["6. Troubleshooting",["Slow movement: check pressure, flow controls, restrictions and load.","No movement: check supply, valve actuation, end stops and binding.","Unexpected movement: isolate safely and check valve state, sensors and control logic."]]]}
 };
 
+mould:{title:"Injection Mould Design — Study Notes",intro:"Injection moulding uses a mould cavity and core to form plastic parts. The design must account for material behaviour, machine capability, cooling and safe ejection.",sections:[
+["1. Main mould components",["Fixed half (A-side) and moving half (B-side).","Core forms internal features; cavity forms external features.","Guide pillars and bushes align the two halves.","Sprue, runner and gate deliver melt to the cavity.","Ejector pins or another suitable system release the part.","Cooling channels remove heat and help control cycle time and warpage."]],
+["2. Important design concepts",["Parting line: the interface where mould halves separate; choose it to support ejection and acceptable flash control.","Draft angle: taper on walls parallel to the opening direction to help release the part.","Shrinkage: material- and process-dependent contraction; use grade-specific data and validate dimensions.","Wall thickness: keep reasonably uniform where possible to reduce sink, voids and warpage.","Gate location: consider filling pattern, weld lines, appearance, packing and gate removal."]],
+["3. Runner, gate and venting",["Runner dimensions depend on material, part size, pressure drop and cycle goals.","Gate types include edge, pin, submarine/tunnel, fan and hot-tip gates.","Vents allow trapped air and gases to escape; poor venting can cause burns or short shots.","Avoid blindly applying one runner or gate size to every part; validate with analysis and trials."]],
+["4. Cooling and ejection",["Place cooling close enough to remove heat uniformly while maintaining tool strength.","Uneven cooling can cause warpage, long cycles and dimensional variation.","Use adequate draft, suitable ejector positions and sufficient ejection area.","Check for undercuts; slides, lifters or collapsible cores may be required."]],
+["5. Design review checklist",["Confirm resin grade, shrinkage data, part drawing and critical dimensions.","Review parting line, draft, wall thickness, ribs, bosses and undercuts.","Check gate, runner, vent, cooling and ejection layout.","Review mould steel, standard components, machine tie-bar/shot capacity and maintenance access.","Validate with mould-flow analysis where appropriate, mould trials and dimensional inspection."]]]}
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   })[char]);
+}
+function togglePptList() {
+  const panel=document.getElementById("pptPanel");
+  const button=document.getElementById("pptToggle");
+  const opening=panel.classList.contains("hidden");
+  panel.classList.toggle("hidden",!opening);
+  button.setAttribute("aria-expanded",String(opening));
+  button.textContent=opening?"📚 Hide Notes":"📚 Notes";
+  if(opening) panel.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function openNote(key) {
   const note=notes[key]; if(!note)return;
@@ -317,6 +410,7 @@ function openNote(key) {
     section[1].forEach(item=>html+='<li>'+escapeHTML(item)+'</li>');
     html+='</ul>';
   });
+  if(key==="mould"){html+='<div class="ppt-panel"><h3>📑 Injection Mould Design PPT</h3><p>Open the detailed calculation toolkit presentation.</p><a class="button" href="./presentations/Injection_Mould_Design_Calculations_A_to_Z_Toolkit.pptx" target="_blank" rel="noopener">Open / Download Mould PPT ↗</a></div>';}
   html+='<p class="muted">Use relevant manufacturer documentation, drawing standards and workplace procedures for real engineering work.</p>';
   detail.innerHTML=html;
   detail.classList.remove("hidden");
@@ -337,59 +431,12 @@ function filterNotes() {
     card.classList.toggle("hidden",!card.textContent.toLowerCase().includes(query));
   });
 }
-function checkQuiz() {
-  const selected=document.querySelector('input[name="quiz"]:checked');
-  const result=document.getElementById("quizResult");
-  if(!selected){result.textContent="Please select an answer first.";return;}
-  result.textContent=selected.value==="1"
-    ?"Correct! RPM = (1000 × cutting speed) / (π × workpiece diameter)."
-    :"Not quite. The correct formula is RPM = (1000 × V) / (π × D).";
-}
-function makeCertificate() {
-  const name=document.getElementById("student").value.trim();
-  const course=document.getElementById("course").value.trim();
-  if(!name || !course){alert("Please enter the student name and course name.");return;}
-  document.getElementById("certName").textContent=name;
-  document.getElementById("certCourse").textContent=course;
-  document.getElementById("certificatePreview").classList.remove("hidden");
-}
-function addNote() {
-  const title=document.getElementById("noteTitle").value.trim();
-  const content=document.getElementById("noteContent").value.trim();
-  const output=document.getElementById("adminNotes");
-  if(!title || !content){output.textContent="Please enter both a note title and note content.";return;}
-  let saved=[];
-  try{saved=JSON.parse(localStorage.getItem("cadManufacturingNotes")||"[]");if(!Array.isArray(saved))saved=[];}catch(e){saved=[];}
-  saved.push({title,content,created:new Date().toISOString()});
-  try{localStorage.setItem("cadManufacturingNotes",JSON.stringify(saved));}
-  catch(e){output.textContent="Could not save this note in local browser storage.";return;}
-  document.getElementById("noteTitle").value="";
-  document.getElementById("noteContent").value="";
-  renderAdminNotes();
-  output.insertAdjacentHTML("afterbegin",'<p class="muted">Note saved on this device.</p>');
-}
-function renderAdminNotes() {
-  const output=document.getElementById("adminNotes");
-  let saved=[];
-  try{saved=JSON.parse(localStorage.getItem("cadManufacturingNotes")||"[]");if(!Array.isArray(saved))saved=[];}catch(e){saved=[];}
-  output.innerHTML=saved.length ? "<h3>Saved local notes</h3>"+saved.map((note,index)=>
-    `<div class="card"><strong>${escapeHTML(note.title)}</strong><p>${escapeHTML(note.content)}</p><button type="button" onclick="deleteNote(${index})">Delete</button></div>`
-  ).join("") : '<p class="muted">No local notes saved yet.</p>';
-}
-function deleteNote(index) {
-  let saved=[];
-  try{saved=JSON.parse(localStorage.getItem("cadManufacturingNotes")||"[]");if(!Array.isArray(saved))saved=[];}catch(e){saved=[];}
-  saved.splice(index,1);
-  localStorage.setItem("cadManufacturingNotes",JSON.stringify(saved));
-  renderAdminNotes();
-}
-
 document.getElementById("year").textContent=new Date().getFullYear();
 pneumatic();
 hydraulic();
 lathe();
 updatePlasticShape();
-renderAdminNotes();
+updateCylinderKit();
 </script>
 </body>
 </html>
